@@ -3,106 +3,311 @@
 @tailwind utilities;
 
 :root {
-  /* Brand tokens — used by both Tailwind config and JS via getComputedStyle if needed */
-  --color-primary: #b21267;
-  --color-accent: #e0b755;
-  --color-secondary: #982170;
-  --color-tertiary: #824542;
-  --color-mauve: #c99894;
-  --color-rose: #eed1d3;
-  --color-peach: #edd8c8;
-  --color-ivory: #f8eed8;
-  --color-taupe: #726758;
-  --color-ink: #1a1a1a;
+  /* === ILUMEE Brand Color Tokens === */
+  --color-primary: #b21267;      /* Magenta - Logo, CTA, highlights */
+  --color-accent: #e0b755;       /* Gold - Decorative, borders, hover */
+  --color-secondary: #982170;    /* Deep purple-pink - Secondary CTA */
+  --color-tertiary: #824542;     /* Warm brown-red - Headers on light */
+  --color-mauve: #c99894;        /* Mauve - Section backgrounds, cards */
+  --color-rose: #eed1d3;         /* Pale pink - Forms, quotes */
+  --color-peach: #edd8c8;        /* Warm beige - Section bg, testimonials */
+  --color-ivory: #f8eed8;        /* Ivory cream - Main page background */
+  --color-taupe: #726758;        /* Warm gray-brown - Body text, icons */
+  --color-ink: #1a1a1a;          /* Soft black - High contrast text */
 
-  /* 3D scene */
+  /* === Extended Palette for Depth === */
+  --color-primary-dark: #8a0e4f;
+  --color-primary-light: #d4478a;
+  --color-accent-dark: #c89d3c;
+  --color-accent-light: #f3d89a;
+  --color-mauve-dark: #a67872;
+  --color-mauve-light: #e5c4c0;
+  --color-rose-dark: #d9adb0;
+  --color-peach-dark: #d4bfa8;
+
+  /* === Gradient Recipes === */
+  --gradient-primary: linear-gradient(135deg, #b21267 0%, #e0b755 100%);
+  --gradient-warm: linear-gradient(135deg, #824542 0%, #e0b755 100%);
+  --gradient-hero: linear-gradient(180deg, #f8eed8 0%, #edd8c8 100%);
+  --gradient-section: linear-gradient(180deg, transparent 0%, #eed1d3 100%);
+
+  /* === 3D Scene & Bodygraph === */
   --scene-bg: #050510;
   --bg-center-defined: #e0b755;
   --bg-center-undefined: #c99894;
   --bg-channel-active: rgba(224, 183, 85, 0.55);
 
-  /* Shadows + radii */
+  /* === Typography Scale (Golden Ratio ~1.618) === */
+  --text-xs: 0.75rem;      /* 12px */
+  --text-sm: 0.875rem;     /* 14px */
+  --text-base: 1rem;       /* 16px */
+  --text-lg: 1.125rem;     /* 18px */
+  --text-xl: 1.25rem;      /* 20px */
+  --text-2xl: 1.5rem;      /* 24px */
+  --text-3xl: 1.875rem;    /* 30px */
+  --text-4xl: 2.25rem;     /* 36px */
+  --text-5xl: 3rem;        /* 48px */
+  --text-6xl: 3.75rem;     /* 60px */
+  --text-7xl: 4.5rem;      /* 72px */
+  --text-8xl: 6rem;        /* 96px */
+  --text-9xl: 8rem;        /* 128px */
+
+  /* === Spacing Scale (8px base) === */
+  --space-1: 0.25rem;   /* 4px */
+  --space-2: 0.5rem;    /* 8px */
+  --space-3: 0.75rem;   /* 12px */
+  --space-4: 1rem;      /* 16px */
+  --space-5: 1.25rem;   /* 20px */
+  --space-6: 1.5rem;    /* 24px */
+  --space-8: 2rem;      /* 32px */
+  --space-10: 2.5rem;   /* 40px */
+  --space-12: 3rem;     /* 48px */
+  --space-16: 4rem;     /* 64px */
+  --space-20: 5rem;     /* 80px */
+  --space-24: 6rem;     /* 96px */
+  --space-32: 8rem;     /* 128px */
+
+  /* === Shadows (Warm, Layered) === */
   --shadow-soft: 0 10px 40px -10px rgba(130, 69, 66, 0.15);
   --shadow-warm: 0 20px 60px -20px rgba(178, 18, 103, 0.18);
+  --shadow-deep: 0 30px 80px -20px rgba(130, 69, 66, 0.25);
+  --shadow-glow: 0 0 40px rgba(224, 183, 85, 0.3);
+  --shadow-card: 0 20px 60px -20px rgba(130, 69, 66, 0.12);
+  --shadow-card-hover: 0 40px 100px -20px rgba(130, 69, 66, 0.25);
+
+  /* === Border Radius === */
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 8px;
+  --radius-xl: 16px;
+  --radius-full: 9999px;
+
+  /* === Transitions === */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slower: 700ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* === Z-index Scale === */
+  --z-base: 0;
+  --z-dropdown: 10;
+  --z-sticky: 20;
+  --z-modal: 30;
+  --z-popover: 40;
+  --z-tooltip: 50;
 }
 
-* {
+/* === Base Resets === */
+*,
+*::before,
+*::after {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-html,
-body {
-  padding: 0;
-  margin: 0;
-  background: var(--color-ivory);
-  color: var(--color-tertiary);
-  font-family: var(--font-body), 'Montserrat', sans-serif;
+html {
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
   scroll-behavior: smooth;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
 body {
-  background: linear-gradient(180deg, var(--color-ivory) 0%, #faeddb 50%, var(--color-peach) 100%);
+  background: linear-gradient(
+    180deg, 
+    var(--color-ivory) 0%, 
+    #faeddb 40%,
+    var(--color-peach) 70%,
+    #e8d5c2 100%
+  );
   min-height: 100vh;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-h1, h2, h3, h4 {
-  font-family: var(--font-display), 'Cormorant Garamond', serif;
   color: var(--color-tertiary);
-  letter-spacing: -0.01em;
+  font-family: var(--font-body), 'Montserrat', 'Nunito Sans', system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
+  font-weight: 400;
+  overflow-x: hidden;
 }
 
-h1 { font-weight: 300; line-height: 1.05; }
-h2 { font-weight: 400; line-height: 1.15; }
-h3 { font-weight: 500; }
+/* === Typography === */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display), 'Cormorant Garamond', 'Georgia', serif;
+  color: var(--color-tertiary);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  font-weight: 300;
+  margin: 0;
+}
 
-a { color: inherit; text-decoration: none; }
+h1 { 
+  font-size: var(--text-6xl); 
+  font-weight: 300;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+}
 
+h2 { 
+  font-size: var(--text-5xl);
+  font-weight: 300;
+  line-height: 1.05;
+}
+
+h3 { 
+  font-size: var(--text-3xl);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+h4 {
+  font-size: var(--text-2xl);
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+p {
+  margin: 0;
+  line-height: 1.7;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--color-primary);
+}
+
+/* === Selection === */
 ::selection {
   background: var(--color-primary);
   color: #fff;
+  text-shadow: none;
 }
 
-/* Scrollbar */
-::-webkit-scrollbar { width: 10px; height: 10px; }
-::-webkit-scrollbar-track { background: var(--color-ivory); }
+::-moz-selection {
+  background: var(--color-primary);
+  color: #fff;
+  text-shadow: none;
+}
+
+/* === Scrollbar === */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-ivory);
+  border-left: 1px solid var(--color-accent-light);
+}
+
 ::-webkit-scrollbar-thumb {
-  background: var(--color-mauve);
-  border-radius: 999px;
+  background: linear-gradient(180deg, var(--color-mauve), var(--color-accent));
+  border-radius: var(--radius-full);
+  border: 2px solid var(--color-ivory);
 }
-::-webkit-scrollbar-thumb:hover { background: var(--color-primary); }
 
-/* Reduce motion */
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--color-primary), var(--color-accent));
+}
+
+/* === Reduced Motion === */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 
-/* Utility classes used across components */
+/* === Utility Classes === */
+
+/* Lotus divider */
 .lotus-divider {
   display: inline-block;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
-  width: 80px;
-  margin: 1rem 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg, 
+    transparent, 
+    var(--color-accent) 20%,
+    var(--color-accent) 80%,
+    transparent
+  );
+  width: 120px;
+  position: relative;
 }
 
+.lotus-divider::before,
+.lotus-divider::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+  width: 6px;
+  height: 6px;
+  background: var(--color-accent);
+}
+
+.lotus-divider::before { left: 0; }
+.lotus-divider::after { right: 0; }
+
+/* Tagline / eyebrow text */
 .tagline {
-  letter-spacing: 0.3em;
+  letter-spacing: 0.35em;
   text-transform: uppercase;
-  font-size: 0.75rem;
+  font-size: var(--text-xs);
   color: var(--color-accent);
-  font-weight: 600;
+  font-weight: 700;
+  display: inline-block;
 }
 
+/* Serif italic utility */
 .serif-italic {
-  font-family: var(--font-display), serif;
+  font-family: var(--font-display), 'Cormorant Garamond', serif;
   font-style: italic;
-  font-weight: 400;
+  font-weight: 300;
+}
+
+/* Editorial lead text */
+.lead-text {
+  font-size: var(--text-xl);
+  line-height: 1.8;
+  color: var(--color-taupe);
+  font-weight: 300;
+  letter-spacing: 0.01em;
+}
+
+/* Gradient text */
+.text-gradient-primary {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-warm {
+  background: linear-gradient(135deg, var(--color-tertiary), var(--color-accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glass morphism card */
+.glass-card {
+  background: rgba(248, 238, 216, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(224, 183, 85, 0.2);
 }
 
 /* Skip link for a11y */
@@ -112,7 +317,66 @@ a { color: inherit; text-decoration: none; }
   top: 0;
   background: var(--color-primary);
   color: white;
-  padding: 0.5rem 1rem;
+  padding: 0.75rem 1.5rem;
   z-index: 100;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: var(--text-sm);
 }
-.skip-link:focus { left: 1rem; top: 1rem; }
+
+.skip-link:focus {
+  left: var(--space-4);
+  top: var(--space-4);
+  outline: 3px solid var(--color-accent);
+  outline-offset: 4px;
+}
+
+/* Focus visible */
+*:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 4px;
+}
+
+/* Button reset */
+button {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+/* Image optimization */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Container utility */
+.container {
+  width: 100%;
+  max-width: 1600px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--space-6);
+  padding-right: var(--space-6);
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding-left: var(--space-16);
+    padding-right: var(--space-16);
+  }
+}
+
+@media (min-width: 1280px) {
+  .container {
+    padding-left: var(--space-24);
+    padding-right: var(--space-24);
+  }
+}

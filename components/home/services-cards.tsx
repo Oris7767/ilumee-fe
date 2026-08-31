@@ -2,42 +2,189 @@
 
 import Link from 'next/link';
 import { useTranslations, useLocale } from 'next-intl';
-import { GraduationCap, BookOpen, Heart, Sparkles } from 'lucide-react';
-import { Card } from '@/components/ui/primitives';
+import { GraduationCap, BookOpen, Heart, Sparkles, ArrowRight } from 'lucide-react';
+import { useState } from 'react';
 
 export function ServicesCards() {
   const t = useTranslations('Home');
   const tNav = useTranslations('Nav');
   const locale = useLocale();
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   const cards = [
-    { icon: GraduationCap, label: tNav('servicesClasses'), href: `/${locale}/services/classes`, desc: 'Khóa học nền tảng về Soul Plan cơ bản, Sống thiết kế của bạn (Living Your Design).' },
-    { icon: BookOpen, label: tNav('servicesReadings'), href: `/${locale}/services/readings`, desc: 'Đọc bản đồ linh hồn Soul Plan, 12 chìa khoá thành công BG5, Đánh thức tài năng theo Thần số học.' },
-    { icon: Heart, label: tNav('servicesPackage'), href: `/${locale}/services/package`, desc: 'Báo cáo chuyên sâu + lớp học + 3 tháng coaching 1-1 (12h).' },
-    { icon: Sparkles, label: tNav('servicesMentorship'), href: `/${locale}/services/mentorship`, desc: 'Mentorship 1-1 liên tục, đồng hành dài hạn.' },
+    { 
+      icon: GraduationCap, 
+      label: tNav('servicesClasses'), 
+      href: `/${locale}/services/classes`, 
+      desc: 'Khóa học nền tảng về Soul Plan cơ bản, Sống thiết kế của bạn (Living Your Design).',
+      color: '#B21267',
+      gradient: 'from-primary/20 to-accent/10',
+    },
+    { 
+      icon: BookOpen, 
+      label: tNav('servicesReadings'), 
+      href: `/${locale}/services/readings`, 
+      desc: 'Đọc bản đồ linh hồn Soul Plan, 12 chìa khoá thành công BG5, Đánh thức tài năng theo Thần số học.',
+      color: '#982170',
+      gradient: 'from-secondary/20 to-mauve/10',
+    },
+    { 
+      icon: Heart, 
+      label: tNav('servicesPackage'), 
+      href: `/${locale}/services/package`, 
+      desc: 'Báo cáo chuyên sâu + lớp học + 3 tháng coaching 1-1 (12h).',
+      color: '#E0B755',
+      gradient: 'from-accent/20 to-peach/10',
+    },
+    { 
+      icon: Sparkles, 
+      label: tNav('servicesMentorship'), 
+      href: `/${locale}/services/mentorship`, 
+      desc: 'Mentorship 1-1 liên tục, đồng hành dài hạn.',
+      color: '#824542',
+      gradient: 'from-tertiary/20 to-rose/10',
+    },
   ];
 
   return (
-    <section className="py-24 lg:py-32 bg-gradient-to-b from-ivory via-peach/30 to-rose/20">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="font-display text-4xl lg:text-6xl text-tertiary mb-4">{t('servicesTitle')}</h2>
-          <div className="lotus-divider mx-auto" />
-          <p className="text-taupe mt-6 max-w-xl mx-auto">{t('servicesSubtitle')}</p>
+    <section className="py-32 lg:py-40 bg-gradient-to-b from-peach/20 via-rose/10 to-ivory relative overflow-hidden">
+      {/* Background decorative elements */}
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
+      <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
+
+      <div className="max-w-[1600px] mx-auto px-6 lg:px-16 xl:px-24 relative z-10">
+        {/* Section header */}
+        <div className="max-w-3xl mb-20 lg:mb-28">
+          <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 bg-rose/20 border border-accent/20">
+            <Heart className="w-4 h-4 text-accent" />
+            <span className="text-[0.65rem] uppercase tracking-[0.35em] text-tertiary font-bold">
+              Dịch vụ
+            </span>
+          </div>
+          
+          <h2 className="font-display text-5xl lg:text-7xl xl:text-8xl text-tertiary mb-8 leading-[0.9] tracking-tight">
+            <span className="font-light">{t('servicesTitle').split(' ')[0]}</span>
+            <br />
+            <span className="font-light italic">{t('servicesTitle').split(' ').slice(1).join(' ')}</span>
+          </h2>
+
+          <div className="relative w-40 h-0.5 mb-8">
+            <div className="absolute inset-0 bg-gradient-to-r from-accent via-accent/60 to-transparent" />
+            <div className="absolute -top-1 left-0 w-2 h-2 bg-accent rotate-45" />
+          </div>
+
+          <p className="text-xl lg:text-2xl text-taupe/90 leading-relaxed font-light max-w-2xl">
+            {t('servicesSubtitle')}
+          </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {cards.map((card) => (
-            <Link key={card.href} href={card.href} className="group">
-              <Card className="h-full text-center transition-all group-hover:-translate-y-1 group-hover:shadow-warm">
-                <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-rose/50 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
-                  <card.icon className="w-6 h-6" strokeWidth={1.5} />
+        {/* Cards grid - bento-style 4-column with UNIQUE colors */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 xl:gap-10">
+          {cards.map((card, index) => {
+            const Icon = card.icon;
+            const isHovered = hoveredIndex === index;
+            
+            return (
+              <Link
+                key={card.href}
+                href={card.href}
+                className="group relative"
+                onMouseEnter={() => setHoveredIndex(index)}
+                onMouseLeave={() => setHoveredIndex(null)}
+              >
+                {/* Card container with depth */}
+                <div 
+                  className="relative h-full min-h-[380px] bg-ivory border border-accent/20 p-8 lg:p-10 transition-all duration-700 ease-out"
+                  style={{
+                    transform: isHovered ? 'translateY(-8px) scale(1.02)' : 'translateY(0) scale(1)',
+                    boxShadow: isHovered 
+                      ? '0 40px 100px -20px rgba(130, 69, 66, 0.25)' 
+                      : '0 20px 60px -20px rgba(130, 69, 66, 0.1)',
+                  }}
+                >
+                  {/* Top accent bar */}
+                  <div 
+                    className="absolute top-0 left-0 right-0 h-1 transition-all duration-700"
+                    style={{
+                      background: `linear-gradient(90deg, ${card.color}, #E0B755)`,
+                      transform: isHovered ? 'scaleX(1)' : 'scaleX(0)',
+                      transformOrigin: 'left',
+                    }}
+                  />
+
+                  {/* Content */}
+                  <div className="flex flex-col h-full">
+                    {/* Icon with gradient background */}
+                    <div 
+                      className={`
+                        relative w-16 h-16 mb-8 rounded-full 
+                        bg-gradient-to-br ${card.gradient}
+                        flex items-center justify-center
+                        transition-all duration-500
+                      `}
+                      style={{
+                        transform: isHovered ? 'scale(1.1) rotate(5deg)' : 'scale(1) rotate(0deg)',
+                        boxShadow: isHovered ? `0 10px 30px -10px ${card.color}50` : 'none',
+                      }}
+                    >
+                      <Icon 
+                        className="w-8 h-8 transition-colors duration-500"
+                        style={{ color: isHovered ? card.color : '#726758' }}
+                        strokeWidth={1.5}
+                      />
+                    </div>
+
+                    {/* Title */}
+                    <h3 className="font-display text-2xl lg:text-3xl text-tertiary mb-4 leading-tight font-normal">
+                      {card.label}
+                    </h3>
+
+                    {/* Divider */}
+                    <div className="w-12 h-px bg-gradient-to-r from-accent/40 to-transparent mb-6" />
+
+                    {/* Description */}
+                    <p className="text-taupe/80 leading-relaxed text-sm lg:text-base flex-grow">
+                      {card.desc}
+                    </p>
+
+                    {/* CTA */}
+                    <div 
+                      className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.25em] mt-8 transition-all duration-300"
+                      style={{ color: card.color }}
+                    >
+                      <span>Tìm hiểu</span>
+                      <ArrowRight 
+                        className="w-4 h-4 transition-transform duration-300"
+                        style={{
+                          transform: isHovered ? 'translateX(6px)' : 'translateX(0)',
+                        }}
+                      />
+                    </div>
+                  </div>
+
+                  {/* Corner decoration */}
+                  <div 
+                    className="absolute bottom-0 right-0 w-20 h-20 border-r border-b transition-opacity duration-500"
+                    style={{
+                      borderColor: card.color,
+                      opacity: isHovered ? 0.2 : 0.05,
+                    }}
+                  />
                 </div>
-                <h3 className="font-display text-xl text-tertiary mb-3">{card.label}</h3>
-                <p className="text-sm text-taupe leading-relaxed">{card.desc}</p>
-              </Card>
-            </Link>
-          ))}
+              </Link>
+            );
+          })}
+        </div>
+
+        {/* Bottom CTA */}
+        <div className="text-center mt-20 lg:mt-28">
+          <Link
+            href={`/${locale}/services`}
+            className="inline-flex items-center gap-4 px-12 py-5 border-2 border-tertiary/30 text-tertiary font-bold uppercase tracking-[0.25em] text-xs hover:bg-gradient-to-r hover:from-rose/30 hover:to-peach/30 hover:border-accent/50 transition-all duration-300 group"
+          >
+            Xem chi tiết dịch vụ
+            <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
+          </Link>
         </div>
       </div>
     </section>
