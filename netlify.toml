@@ -1,0 +1,30 @@
+# Netlify configuration — zero-config Next.js detection
+# https://docs.netlify.com/build/frameworks/framework-setup-guides/nextjs/overview
+
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# Do NOT pin @netlify/plugin-nextjs — Netlify auto-updates OpenNext adapter.
+# Skew protection (optional — uncomment to enable):
+# NETLIFY_NEXT_SKEW_PROTECTION = "true"
+
+[[headers]]
+  for = "/(.*)"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
+[functions]
+  node_bundler = "esbuild"
+
+# i18n: Netlify redirect at root → /vi (handled by Next middleware, but kept for static host fallback)
+[[redirects]]
+  from = "/api/health"
+  to = "/.netlify/functions/___netlify-handler"
+  status = 200

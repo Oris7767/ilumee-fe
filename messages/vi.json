@@ -1,0 +1,101 @@
+{
+  "Brand": {
+    "name": "ILUMEE",
+    "tagline": "Awaken Your True Power"
+  },
+  "Nav": {
+    "about": "Giới thiệu",
+    "blog": "Blog",
+    "tools": "Công cụ",
+    "toolsSoulPlan": "Soul Plan",
+    "toolsHumanDesign": "Human Design",
+    "toolsNumerology": "Thần số học",
+    "services": "Dịch vụ",
+    "servicesClasses": "Lớp học",
+    "servicesReadings": "Readings",
+    "servicesPackage": "Package",
+    "servicesMentorship": "Mentorship",
+    "calculator": "Tính ngay",
+    "openMenu": "Mở menu",
+    "closeMenu": "Đóng menu"
+  },
+  "Home": {
+    "heroEyebrow": "Huyền học ứng dụng",
+    "heroTitle": "Khám phá bản thiết kế\ncủa chính bạn",
+    "heroSubtitle": "Bộ ba công cụ huyền học: Soul Plan, Human Design và Thần số học — kết hợp giải mã cá tính và dẫn lối sống đúng với thiết kế vốn có của bạn.",
+    "ctaPrimary": "Tính bản đồ của tôi",
+    "ctaSecondary": "Khám phá dịch vụ",
+    "toolsTitle": "Ba công cụ, một hành trình",
+    "toolsSubtitle": "Mỗi công cụ phản chiếu một góc nhìn khác nhau về con người bạn.",
+    "servicesTitle": "Đồng hành cùng chuyên gia",
+    "servicesSubtitle": "Từ lớp học nền tảng đến mentorship 1-1 — chọn hình thức phù hợp với nhịp sống của bạn."
+  },
+  "ToolCard": {
+    "humanDesignEyebrow": "Human Design",
+    "humanDesignTitle": "Bản đồ 9 Trung tâm năng lượng",
+    "humanDesignDesc": "Hiểu cách năng lượng của bạn vận hành qua 9 center, 36 channel và 64 gate I Ching.",
+    "soulPlanEyebrow": "Soul Plan",
+    "soulPlanTitle": "Bản đồ linh hồn từ tên khai sinh",
+    "soulPlanDesc": "Giải mã ý nghĩa tên bạn qua Ngôi sao Sáng thế 6 cánh — mục đích, tài năng và thách thức.",
+    "numerologyEyebrow": "Thần số học",
+    "numerologyTitle": "Con số chủ đạo Pythagorean",
+    "numerologyDesc": "Khám phá Đường đời, Số tên, Số định mệnh và 10 khía cạnh cuộc sống."
+  },
+  "Calculator": {
+    "title": "Tính bản đồ Human Design",
+    "subtitle": "BodyGraph 9 Centers · 64 Gates · 36 Channels",
+    "form": {
+      "nameLabel": "Họ và tên khai sinh",
+      "namePlaceholder": "Nguyễn Văn A",
+      "dobLabel": "Ngày sinh",
+      "timeLabel": "Giờ sinh",
+      "timeOptional": "Không rõ giờ? Tick để dùng noon và disclaimer gần đúng",
+      "placeLabel": "Nơi sinh",
+      "placePlaceholder": "Thành phố, Quốc gia",
+      "emailLabel": "Email (tuỳ chọn — để nhận báo cáo PDF)",
+      "submit": "Tính bản đồ",
+      "submitting": "Đang tính..."
+    },
+    "sections": {
+      "yourChart": "Bản đồ của bạn",
+      "yourType": "Type · Strategy · Authority",
+      "yourProfile": "Profile · Definition · Cross",
+      "yourVariables": "Variables",
+      "yourCenters": "9 Centers",
+      "yourChannels": "36 Channels",
+      "yourPlanets": "Hành tinh & Gates",
+      "education": "Giảng giải về bộ môn",
+      "recommend": "Gói tư vấn phù hợp"
+    },
+    "disclaimer": "Kết quả chỉ mang tính giáo dục và giải trí. Không thay thế tư vấn y tế, tài chính hay tâm lý chuyên nghiệp."
+  },
+  "Packages": {
+    "classesSoulPlan.name": "Lớp học Soul Plan cơ bản",
+    "classesSoulPlan.short": "Khóa học nền tảng về Soul Plan: giải mã tên khai sinh qua Ngôi sao Sáng thế 6 cánh và cách ứng dụng vào cuộc sống hàng ngày.",
+    "classesLivingDesign.name": "Sống thiết kế của bạn (Living Your Design)",
+    "classesLivingDesign.short": "Khóa học chính thức của Human Design — học cách áp dụng Type, Strategy và Authority vào quyết định hàng ngày.",
+    "readingsSoulPlan.name": "Đọc bản đồ linh hồn Soul Plan",
+    "readingsSoulPlan.short": "Phiên đọc 1-1 về linh hồn: xem xét Ngôi sao Sáng thế cá nhân và giải thích chi tiết về các cặp số trong đời bạn.",
+    "readingsBG5.name": "12 chìa khoá thành công BG5",
+    "readingsBG5.short": "Phiên đọc BG5 — 12 kiểu thành công theo BodyGraph 5, gợi ý vai trò và cách đóng góp vào nhóm.",
+    "readingsNumerology.name": "Đánh thức tài năng theo Thần số học",
+    "readingsNumerology.short": "Phiên đọc 1-1: phân tích Đường đời, Số tên, Số định mệnh và 10 khía cạnh cuộc sống từ Thần số học Pythagorean.",
+    "packageCombo.name": "Combo 3 tháng · Báo cáo + Lớp học + Coaching",
+    "packageCombo.short": "Báo cáo chuyên sâu + lớp học nền tảng + 3 tháng coaching 1-1 (12 giờ) — flagship cho hành trình toàn diện.",
+    "mentorship1on1.name": "Mentorship Coaching 1-1",
+    "mentorship1on1.short": "Đồng hành dài hạn cùng chuyên gia — kết hợp nhiều công cụ, theo dõi tiến trình qua các tháng.",
+    "unit.one_time": "Một lần",
+    "unit.monthly": "Mỗi tháng",
+    "unit.combo": "Combo 3 tháng"
+  },
+  "Footer": {
+    "disclaimer": "Các công cụ và bài viết trên ILUMEE chỉ mang tính giáo dục và giải trí, không thay thế tư vấn y tế, tài chính hay tâm lý chuyên nghiệp.",
+    "contactTitle": "Liên hệ",
+    "socialTitle": "Cộng đồng",
+    "legalTitle": "Pháp lý",
+    "terms": "Điều khoản dịch vụ",
+    "privacy": "Chính sách bảo mật",
+    "disclaimerFull": "Disclaimer",
+    "copyright": "© 2026 ILUMEE. All rights reserved."
+  }
+}
