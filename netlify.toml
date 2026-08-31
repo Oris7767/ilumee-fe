@@ -2,13 +2,11 @@
 # https://docs.netlify.com/build/frameworks/framework-setup-guides/nextjs/overview
 
 [build]
-  # Let Netlify auto-detect Next.js build (uses @netlify/plugin-nextjs)
-  # If this fails, explicitly set: command = "npm ci && npm run build"
+  command = "npm ci --legacy-peer-deps && npm run build"
   publish = ".next"
 
 [build.environment]
   NODE_VERSION = "20.20.2"
-  NPM_FLAGS = "--legacy-peer-deps"
 
 # Do NOT pin @netlify/plugin-nextjs — Netlify auto-updates OpenNext adapter.
 # Skew protection (optional — uncomment to enable):
