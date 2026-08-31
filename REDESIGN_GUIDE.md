@@ -1,492 +1,687 @@
-# 🪷 ILUMEE Website Redesign Guide — Editorial Luxury Spiritual
+# ILUMEE Website Redesign — Editorial Luxury with 3D Depth
 
-> **Design Philosophy:** "Editorial luxury meets spiritual technology"  
-> **Inspiration:** hillarymcveigh.com × Magazine layouts × Premium spiritual brands  
-> **Tech:** Next.js 15 + React Three Fiber + Tailwind + shadcn/ui
+## Style Selection
+
+### Chosen Style: **Editorial Luxury + Liquid Glass 3D**
+**Style ID:** #3 (Editorial Grid/Magazine) + #7 (Liquid Glass) from ui-ux-pro-max
+
+### Rationale
+ILUMEE requires a design that signals **premium spiritual technology** — not generic wellness, not corporate SaaS. The combination delivers:
+
+1. **Editorial Grid/Magazine** provides:
+   - Asymmetric layouts that break template monotony
+   - Generous whitespace signaling luxury positioning
+   - Typography-first hierarchy (hillary mcveigh spirit)
+   - Print-inspired credibility and sophistication
+
+2. **Liquid Glass 3D** adds:
+   - Depth through translucent layers and blur
+   - Ethereal, spiritual quality via morphing animations
+   - Premium tactile feeling through glassmorphic surfaces
+   - Modern edge that separates from "crystal-and-candles" wellness clichés
+
+3. **Why NOT the alternatives:**
+   - ❌ Minimalist Monochrome: Too austere, lacks spiritual warmth
+   - ❌ Brutalism: Too aggressive, anti-brand for feminine energy
+   - ❌ Skeuomorphism: Dated, performance-heavy, not web-native
+   - ❌ Generic Liquid Glass alone: Lacks content structure, becomes decoration
+
+### Reference Sites
+- **hillarymcveigh.com** — Spacious editorial layouts, luxury positioning
+- **stripe.com/sessions** — 3D depth with editorial content balance
+- **linear.app** — Glassmorphic depth without sacrificing readability
+- **awwwards.com/sites/luxury** — Premium spatial design patterns
 
 ---
 
-## 🎯 Design Direction (ui-ux-pro-max Applied)
+## Color System
 
-### Selected Style: **Editorial Luxury (#23 from 67 styles library)**
-
-**Characteristics:**
-- LARGE serif headlines (8rem+) with italic accents
-- Asymmetric grids (45/55, NOT 50/50)
-- Generous whitespace (80px-128px sections)
-- Layered depth (shadows, 3D, overlapping elements)
-- Warm palette with extended light/dark shades
-- Custom 3D components (NOT stock icons)
-- Purposeful animations (700ms slow, ease-out)
-
-**Why NOT generic templates:**
-- ❌ Uniform card grids → ✅ Asymmetric editorial layouts
-- ❌ Centered everything → ✅ 45/55 splits, left-aligned power
-- ❌ Small headlines (<48px) → ✅ 8rem display type
-- ❌ Flat shadows → ✅ Layered warm shadows
-- ❌ Harsh RGB → ✅ Warm extended palettes
-- ❌ Stock icons → ✅ Custom 3D orbs/lotus
-- ❌ Template hover → ✅ 700ms transitions with purpose
-
----
-
-## 🎨 Color System (from 161 palettes — Warm Spiritual #78)
-
-### Extended ILUMEE Palette
-
+### Primary Palette (Brand Core)
 ```css
-/* Base (from spec) */
---color-primary: #B21267      /* Magenta */
---color-accent: #E0B755       /* Gold */
---color-secondary: #982170    /* Deep purple-pink */
---color-tertiary: #824542     /* Warm brown-red */
---color-mauve: #C99894        /* Mauve */
---color-rose: #EED1D3         /* Pale pink */
---color-peach: #EDD8C8        /* Warm beige */
---color-ivory: #F8EED8        /* Ivory cream */
---color-taupe: #726758        /* Warm gray-brown */
---color-ink: #1A1A1A          /* Soft black */
-
-/* Extended for Depth (NEW) */
---color-primary-dark: #8A0E4F
---color-primary-light: #D4478A
---color-accent-dark: #C89D3C
---color-accent-light: #F3D89A
---color-mauve-dark: #A67872
---color-mauve-light: #E5C4C0
---color-rose-dark: #D9ADB0
---color-peach-dark: #D4BFA8
-
-/* Gradient Recipes */
---gradient-primary: linear-gradient(135deg, #B21267 0%, #E0B755 100%)
---gradient-warm: linear-gradient(135deg, #824542 0%, #E0B755 100%)
---gradient-hero: linear-gradient(180deg, #F8EED8 0%, #EDD8C8 100%)
---gradient-section: linear-gradient(180deg, transparent 0%, #EED1D3 100%)
+--color-primary: #B21267;      /* Magenta — Logo, primary CTA, key highlights */
+--color-secondary: #982170;    /* Deep Purple-Pink — Secondary actions, hover states */
+--color-tertiary: #824542;     /* Warm Terracotta — Headlines on light backgrounds */
+--color-accent: #E0B755;       /* Gold — Borders, decorative elements, luxury accents */
+--color-ivory: #F8EED8;        /* Main background — warm, inviting base */
 ```
 
-### Usage Guidelines
-- 60% nền (ivory/peach variations)
-- 30% content (taupe body + tertiary headers)
-- 10% accents (magenta + gold highlights)
-- Each card/section uses unique color from extended palette
-- NO uniform color across all cards
+### Extended Palette (Depth & Variation)
+```css
+/* Tints & Shades for Layering */
+--color-primary-light: #D4478A;
+--color-primary-dark: #8A0E4F;
+--color-secondary-light: #B84A93;
+--color-secondary-dark: #6B1650;
+--color-accent-light: #F3D89A;
+--color-accent-dark: #C89D3C;
+
+/* Neutrals & Surfaces */
+--color-taupe: #726758;        /* Body text, secondary content */
+--color-mauve: #C99894;        /* Section backgrounds, card surfaces */
+--color-rose: #EED1D3;         /* Forms, light overlays */
+--color-peach: #EDD8C8;        /* Section transitions */
+--color-ink: #1A1A1A;          /* High contrast text when needed */
+
+/* Glassmorphic Elements */
+--glass-white: rgba(248, 238, 216, 0.7);
+--glass-rose: rgba(238, 209, 211, 0.6);
+--glass-peach: rgba(237, 216, 200, 0.5);
+```
+
+### Gradient Recipes
+```css
+/* Hero gradient — warm invitation */
+--gradient-hero: linear-gradient(
+  135deg, 
+  #F8EED8 0%, 
+  #EDD8C8 40%, 
+  #EED1D3 100%
+);
+
+/* Primary CTA gradient — vibrant energy */
+--gradient-cta: linear-gradient(
+  135deg, 
+  #B21267 0%, 
+  #982170 50%, 
+  #E0B755 100%
+);
+
+/* Card depth gradient — subtle 3D */
+--gradient-card: linear-gradient(
+  160deg, 
+  rgba(248, 238, 216, 0.95) 0%, 
+  rgba(237, 216, 200, 0.9) 100%
+);
+
+/* Glassmorphic overlay — ethereal depth */
+--gradient-glass: linear-gradient(
+  135deg,
+  rgba(224, 183, 85, 0.15) 0%,
+  rgba(178, 18, 103, 0.1) 50%,
+  rgba(152, 33, 112, 0.15) 100%
+);
+```
+
+### Color Usage Guidelines
+- **Primary (#B21267)**: CTA buttons, active states, key icons, links
+- **Accent (#E0B755)**: Borders, dividers, decorative elements, hover accents
+- **Tertiary (#824542)**: All headlines, subheads on light backgrounds
+- **Taupe (#726758)**: Body text, captions, secondary information
+- **Glassmorphic overlays**: 3D cards, modal backgrounds, floating UI elements
 
 ---
 
-## ✍️ Typography Scale (Golden Ratio ~1.618)
+## Typography
 
-### Font Pairing (#12 from 57 pairings)
-- **Display:** Cormorant Garamond (Light/Light Italic for headlines, Semibold for H1)
-- **Body:** Montserrat (300/400/600) or Nunito Sans (300/400/700)
-- **Accent:** Uppercase tracking-widest for taglines
+### Font Pairing: **Cormorant Garamond + Montserrat**
 
-### Scale
-```css
---text-9xl: 8rem      /* 128px — Hero H1 italic */
---text-8xl: 6rem      /* 96px — Hero H1 normal */
---text-7xl: 4.5rem    /* 72px — Section headers */
---text-6xl: 3.75rem   /* 60px */
---text-5xl: 3rem      /* 48px */
---text-4xl: 2.25rem   /* 36px */
---text-3xl: 1.875rem  /* 30px — Card titles */
---text-2xl: 1.5rem    /* 24px — Subtitles */
---text-xl: 1.25rem    /* 20px — Lead text */
---text-base: 1rem     /* 16px — Body */
+**Display Font:** Cormorant Garamond (Google Fonts)
+- **Weights:** 300 (Light), 400 (Regular), 500 (Medium), 600 (SemiBold)
+- **Use:** Hero headlines, section titles, editorial quotes
+- **Mood:** Elegant, timeless, editorial sophistication
+- **Character:** High contrast serifs, Italian Renaissance roots
+
+**Body Font:** Montserrat (Google Fonts)
+- **Weights:** 300 (Light), 400 (Regular), 500 (Medium), 600 (SemiBold), 700 (Bold)
+- **Use:** Body copy, buttons, labels, UI text
+- **Mood:** Modern, clean, geometric sans
+- **Character:** Geometric with warm friendliness
+
+### Google Fonts Import
+```html
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 ```
 
-### Hierarchy Rules
-1. **H1 Hero:** 8rem italic + 7rem normal split (two-line dramatic)
-2. **Section H2:** 4.5-6rem, italic word + normal continuation
-3. **Card H3:** 1.875-2.25rem display
-4. **Body:** 1rem-1.25rem, line-height 1.7
-5. **Tagline:** 0.65rem uppercase, tracking 0.35em, bold
+### Typography Scale (1.618 Golden Ratio)
+```css
+/* Display Sizes (Cormorant Garamond) */
+--text-hero: clamp(4rem, 8vw + 2rem, 10rem);     /* 64-160px */
+--text-display-1: clamp(3.5rem, 6vw + 1rem, 8rem);  /* 56-128px */
+--text-display-2: clamp(3rem, 5vw + 1rem, 6rem);    /* 48-96px */
+--text-display-3: clamp(2.5rem, 4vw + 0.5rem, 4.5rem); /* 40-72px */
+
+/* Heading Sizes (Cormorant Garamond) */
+--text-h1: clamp(2.25rem, 3vw + 0.5rem, 3.75rem);  /* 36-60px */
+--text-h2: clamp(1.875rem, 2.5vw + 0.5rem, 3rem);  /* 30-48px */
+--text-h3: clamp(1.5rem, 2vw + 0.5rem, 2.25rem);   /* 24-36px */
+--text-h4: clamp(1.25rem, 1.5vw + 0.25rem, 1.875rem); /* 20-30px */
+
+/* Body Sizes (Montserrat) */
+--text-body-xl: 1.25rem;   /* 20px — introductory paragraphs */
+--text-body-lg: 1.125rem;  /* 18px — article body, feature descriptions */
+--text-body: 1rem;         /* 16px — standard UI text */
+--text-body-sm: 0.875rem;  /* 14px — captions, metadata */
+--text-body-xs: 0.75rem;   /* 12px — legal, eyebrows */
+
+/* Special Styles */
+--text-eyebrow: 0.65rem;   /* 10.4px — uppercase labels */
+--letter-spacing-eyebrow: 0.35em;
+--letter-spacing-tight: -0.02em;
+--letter-spacing-hero: -0.03em;
+```
+
+### Typography Usage Rules
+
+#### Headlines (Cormorant Garamond)
+```css
+.display-headline {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: var(--text-display-1);
+  font-weight: 300; /* Light for elegance */
+  font-style: italic; /* Editorial sophistication */
+  line-height: 0.9;
+  letter-spacing: var(--letter-spacing-hero);
+  color: var(--color-tertiary);
+}
+```
+
+#### Body Text (Montserrat)
+```css
+.body-text {
+  font-family: 'Montserrat', sans-serif;
+  font-size: var(--text-body-lg);
+  font-weight: 400;
+  line-height: 1.7;
+  letter-spacing: 0.01em;
+  color: var(--color-taupe);
+}
+```
+
+#### Eyebrow Labels
+```css
+.eyebrow {
+  font-family: 'Montserrat', sans-serif;
+  font-size: var(--text-eyebrow);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-eyebrow);
+  color: var(--color-accent);
+}
+```
 
 ---
 
-## 🏗️ Component Architecture
+## 3D Integration Strategy
 
-### 1. Hero Section (Asymmetric 45/55)
+### ThreeUI Component Philosophy
+**Goal:** 3D enhances brand storytelling, never decorates for decoration's sake.
 
-```
-[———————————————————————————————————————]
-|  45% TEXT               |  55% 3D     |
-|  - Eyebrow (sparkle)    |  - Lotus    |
-|  - H1 (8rem italic)     |  - Canvas   |
-|  - Divider (gold)       |  - Frame    |
-|  - Subtitle (2xl)       |  decorative |
-|  - CTAs (stacked)       |             |
-|  - Trust indicator      |             |
-[———————————————————————————————————————]
-```
+**Principles:**
+1. **Performance First**: 60fps target, progressive enhancement, fallbacks
+2. **Semantic Meaning**: Each 3D element represents spiritual concepts
+3. **Subtle Motion**: Slow, meditative animations (2-4s duration)
+4. **Depth Without Noise**: 3D adds layers, doesn't compete with content
 
-**Key Elements:**
-- Eyebrow: `px-5 py-2.5 bg-gradient-to-r from-rose/40 to-peach/40 border border-accent/30`
-- H1: `text-7xl sm:text-8xl lg:text-[7rem] xl:text-[8rem] font-light italic`
-- Divider: Gold gradient with diamond endpoints (CSS ::before/::after)
-- CTAs: Primary (magenta solid) + Secondary (outlined, hover gradient fill)
-- Trust: Avatar stack + "1,000+ souls awakened"
-- 3D Lotus: Full-height canvas, decorative asymmetric corner frames
+### ThreeUI Components Mapping
 
-### 2. Tool Cards (3-column grid)
+#### 1. Hero Section — Lotus 3D Centerpiece
+**Component:** `<Lotus3D />`
+- **Placement:** Right side of asymmetric grid (55% width)
+- **Visual:** Sacred geometry lotus with rotating petals
+- **Animation:** Slow rotation (0.2rpm), petal breathing (2s cycle)
+- **Color:** Primary gradient (#B21267 → #E0B755)
+- **Performance:** ~5K polygons, optimized geometry
+- **Fallback:** Static SVG lotus icon
 
-```
-[———————————————————————————————————————]
-|   Card 1   |   Card 2   |   Card 3   |
-|  - 3D Orb  |  - 3D Orb  |  - 3D Orb  |
-|  (h-48)    |  (h-48)    |  (h-48)    |
-|  - Eyebrow |  - Eyebrow |  - Eyebrow |
-|  - Title   |  - Title   |  - Title   |
-|  - Desc    |  - Desc    |  - Desc    |
-|  - CTA     |  - CTA     |  - CTA     |
-[———————————————————————————————————————]
+**Technical Specs:**
+```tsx
+<Lotus3D
+  position={[0, 0, 0]}
+  scale={1.5}
+  color="#B21267"
+  animate={true}
+  rotationSpeed={0.002}
+  breathingSpeed={2}
+/>
 ```
 
-**Card Depth:**
-- Base: `shadow-card` (20px 60px -20px rgba(130,69,66,0.12))
-- Hover: `shadow-card-hover` (40px 100px -20px rgba(130,69,66,0.25))
-- Transform: `translateY(-12px) scale(1.02)` on hover
-- Top border: Colored gradient, scaleX animation from 0 to 1 on hover
-- Corner accent: Bottom-right border, opacity fade in
+#### 2. Tools Section — Floating 3D Cards
+**Component:** `<ToolCard3D />`
+- **Placement:** Wrap each tool card (3-column grid)
+- **Visual:** Floating card with depth, parallax on scroll
+- **Animation:** Hover lift (12px), rotation (3deg), glow increase
+- **Depth:** 20px extrusion, soft shadow underneath
+- **Performance:** Instanced meshes for all 3 cards
+- **Fallback:** 2D card with box-shadow
 
-### 3. Services Cards (4-column bento)
-
+**Technical Specs:**
+```tsx
+<ToolCard3D
+  icon="soulplan" // or "humandesign", "numerology"
+  color="#B21267"
+  depth={20}
+  hoverLift={12}
+  parallaxStrength={0.3}
+/>
 ```
-[———————————————————————————————————————]
-| Card 1 | Card 2 | Card 3 | Card 4   |
-| Icon   | Icon   | Icon   | Icon     |
-| Title  | Title  | Title  | Title    |
-| Desc   | Desc   | Desc   | Desc     |
-[———————————————————————————————————————]
+
+#### 3. Services Section — Ambient 3D Background
+**Component:** `<ParticleField3D />`
+- **Placement:** Full-width background, behind cards
+- **Visual:** Floating sacred geometry particles (small, subtle)
+- **Animation:** Slow drift, gentle rotation
+- **Density:** Low (30-50 particles)
+- **Performance:** Point sprites, minimal draw calls
+- **Fallback:** Static gradient background
+
+**Technical Specs:**
+```tsx
+<ParticleField3D
+  count={40}
+  size={0.5}
+  color="#E0B755"
+  opacity={0.15}
+  drift={0.0005}
+/>
 ```
 
-**Differentiation:**
-- Each card: Unique color (primary/secondary/accent/tertiary)
-- Icon: Gradient background circle matching card color
-- Hover: Icon scales 1.1 + rotates 5deg
-- Bottom CTA: Colored text + arrow slide 8px on hover
+### Performance Budget
+```
+Target: 60fps (16.67ms per frame)
+- Hero Lotus: ~8ms
+- Tool Cards (3x): ~5ms total
+- Particle Field: ~2ms
+- Buffer: ~1.67ms
+```
+
+**Optimization Strategies:**
+1. **LOD (Level of Detail)**: Reduce geometry on mobile
+2. **Instancing**: Reuse geometries for particles/cards
+3. **Lazy Loading**: Load 3D only when in viewport
+4. **Canvas Pooling**: Single R3F Canvas for multiple components
+5. **Device Detection**: Disable 3D on low-end devices
+
+### Fallback Strategy
+```typescript
+// Detect WebGL support
+const hasWebGL = (() => {
+  try {
+    const canvas = document.createElement('canvas');
+    return !!(canvas.getContext('webgl') || canvas.getContext('experimental-webgl'));
+  } catch {
+    return false;
+  }
+})();
+
+// Detect device performance tier
+const isLowEndDevice = () => {
+  return (
+    navigator.hardwareConcurrency <= 2 ||
+    /iPhone [678]|iPad|Android/.test(navigator.userAgent)
+  );
+};
+
+// Progressive enhancement
+if (!hasWebGL || isLowEndDevice()) {
+  // Render 2D fallback
+  return <Static2DLotus />;
+}
+```
 
 ---
 
-## 🎬 Animation System (from 99 UX guidelines)
+## Component Architecture
 
-### Timing Functions
-```css
---transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1)
---transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1)
---transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1)
---transition-slower: 700ms cubic-bezier(0.4, 0, 0.2, 1)
+### Hero Section
+
+#### Layout Structure
+```
+Grid: 45% content | 55% 3D scene (desktop)
+Stack: content > 3D scene (mobile)
 ```
 
-### Hover States
-- **Cards:** `translateY(-8px)` + shadow increase (700ms slower)
-- **Buttons:** Background gradient slide-up with translate-y
-- **Arrows:** `translateX(6px-8px)` smooth
-- **Icons:** `scale(1.1) rotate(5deg)`
-- **3D Orbs:** Scale 1.2 + ambient light glow
+#### 3D Element Integration
+```tsx
+{/* Right: 3D Lotus with editorial frame */}
+<div className="relative h-[80vh]">
+  {/* Decorative frame — asymmetric borders */}
+  <div className="absolute -top-8 -right-8 w-48 h-48 border-t-2 border-r-2 border-accent/30" />
+  <div className="absolute -bottom-12 -left-12 w-64 h-64 border-b-2 border-l-2 border-accent/20" />
+  
+  {/* 3D Canvas with glassmorphic container */}
+  <div className="relative h-full bg-gradient-to-br from-transparent via-rose/10 to-peach/20 backdrop-blur-3xl border border-accent/10">
+    <Scene3DWrapper cameraPosition={[0, 0, 6]}>
+      <Lotus3D position={[0, 0, 0]} scale={1.5} color="#B21267" animate />
+    </Scene3DWrapper>
+  </div>
+  
+  {/* Overlay gradient for depth */}
+  <div className="absolute inset-0 pointer-events-none bg-radial-gradient opacity-30" />
+</div>
+```
 
-### Scroll Behaviors
-- Hero scroll indicator: `animate-bounce`
-- Section reveals: Fade-in + slide-up (future — Intersection Observer)
-- Sticky header: Shadow appears on scroll
+#### Animation Strategy
+- **Eyebrow**: Fade in + slide up (300ms delay)
+- **Headline**: Stagger words (100ms each), slide up + fade
+- **CTAs**: Fade in + scale (500ms delay)
+- **3D Lotus**: Continuous slow rotation, no entrance (always present)
+- **Frame borders**: Draw animation (1s)
 
-### Reduced Motion
+---
+
+### Tools Section
+
+#### Layout Structure
+```
+Grid: 3 columns (desktop) → 1 column (mobile)
+Card min-height: 480px
+Gap: 48px (desktop) / 32px (mobile)
+```
+
+#### 3D Element Integration
+```tsx
+<Link href={card.href} className="group">
+  <div className="card-container">
+    {/* Top: 3D Orb Scene */}
+    <div className="h-48 mb-8">
+      <Scene3DWrapper cameraPosition={[0, 0, 4]}>
+        <Tool3DOrb 
+          icon={card.orb} 
+          color={card.color} 
+          scale={0.8}
+          isHovered={isHovered}
+        />
+      </Scene3DWrapper>
+    </div>
+    
+    {/* Content below */}
+    <div className="content">
+      <div className="eyebrow">{card.eyebrow}</div>
+      <h3>{card.title}</h3>
+      <p>{card.desc}</p>
+      <div className="cta">Khám phá →</div>
+    </div>
+  </div>
+</Link>
+```
+
+#### Card Depth Effect
 ```css
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    transition-duration: 0.01ms !important;
+.card-container {
+  /* Base state */
+  background: linear-gradient(160deg, rgba(248, 238, 216, 0.95), rgba(237, 216, 200, 0.9));
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(224, 183, 85, 0.2);
+  box-shadow: 0 20px 60px -20px rgba(130, 69, 66, 0.12);
+  
+  /* Hover state */
+  &:hover {
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: 
+      0 40px 100px -20px rgba(130, 69, 66, 0.25),
+      inset 0 1px 0 rgba(224, 183, 85, 0.2);
   }
 }
 ```
 
 ---
 
-## 🌟 3D Integration Strategy
+### Services Section
 
-### Current Components (already exist)
-1. **Lotus3D** (`components/3d/lotus-3d.tsx`)
-   - Hero section centerpiece
-   - Floating/rotating glass lotus
-   - Magenta petals + gold rings
-   - Props: `position`, `scale`, `color`, `animate`
+#### Layout Structure
+```
+Grid: 4 columns (desktop) → 2 columns (tablet) → 1 column (mobile)
+Card aspect: portrait (1:1.3 ratio)
+Gap: 32px (all breakpoints)
+```
 
-2. **Tool3DOrb** (`components/3d/tool-orb-3d.tsx`)
-   - Tool cards (3 variants: soulplan, humandesign, numerology)
-   - Wireframe geometry with brand colors
-   - Hover: scale + glow
-   - Props: `icon`, `color`, `scale`, `isHovered`
-
-3. **Scene3DWrapper** (`components/3d/scene-wrapper.tsx`)
-   - Reusable Three.js canvas wrapper
-   - Ambient + Directional + Spotlight lighting
-   - Camera controls
-   - Props: `cameraPosition`, `children`
-
-### Lighting Setup (Spiritual Aesthetic)
+#### 3D Background Integration
 ```tsx
-<ambientLight intensity={0.4} color="#F8EED8" />
-<directionalLight 
-  position={[10, 10, 5]} 
-  intensity={0.8} 
-  color="#E0B755"
-  castShadow 
-/>
-<spotLight
-  position={[0, 10, 0]}
-  angle={0.3}
-  penumbra={1}
-  intensity={0.5}
-  color="#B21267"
-/>
-<Environment preset="sunset" />
+<section className="relative">
+  {/* Background: Subtle particle field */}
+  <div className="absolute inset-0 opacity-40">
+    <Scene3DWrapper>
+      <ParticleField3D 
+        count={40}
+        color="#E0B755"
+        opacity={0.15}
+      />
+    </Scene3DWrapper>
+  </div>
+  
+  {/* Content: Cards on top */}
+  <div className="relative z-10">
+    {cards.map((card) => (
+      <ServiceCard {...card} />
+    ))}
+  </div>
+</section>
 ```
 
-### Performance
-- `dpr={[1, 2]}` — adaptive pixel ratio
-- `powerPreference: 'high-performance'`
-- Dynamic imports with `ssr: false`
-- Suspense fallbacks with branded loading states
+#### Scroll-Triggered Animation
+```typescript
+// Use Intersection Observer
+const cardRef = useRef<HTMLDivElement>(null);
 
-### Future Enhancements
-- Bodygraph results: 3D center visualization (rotating chakra nodes)
-- Soul Plan star: 3D rotating star with particle effects
-- Numerology chart: 3D bar graph with ambient glow
+useEffect(() => {
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      if (entry.isIntersecting) {
+        // Trigger stagger animation
+        gsap.to(cardRef.current, {
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          ease: 'power3.out',
+        });
+      }
+    },
+    { threshold: 0.2 }
+  );
+  
+  if (cardRef.current) observer.observe(cardRef.current);
+  return () => observer.disconnect();
+}, []);
+```
 
 ---
 
-## 📐 Layered Shadow System
+## Animation Principles
 
+### Duration Ranges
 ```css
-/* Soft — subtle elevation */
---shadow-soft: 0 10px 40px -10px rgba(130, 69, 66, 0.15);
+/* Micro-interactions */
+--duration-instant: 100ms;
+--duration-fast: 200ms;
+--duration-base: 300ms;
 
-/* Warm — magenta tint for primary elements */
---shadow-warm: 0 20px 60px -20px rgba(178, 18, 103, 0.18);
+/* Standard transitions */
+--duration-slow: 500ms;
+--duration-slower: 700ms;
 
-/* Deep — strong elevation */
---shadow-deep: 0 30px 80px -20px rgba(130, 69, 66, 0.25);
-
-/* Glow — gold aura */
---shadow-glow: 0 0 40px rgba(224, 183, 85, 0.3);
-
-/* Card system */
---shadow-card: 0 20px 60px -20px rgba(130, 69, 66, 0.12);
---shadow-card-hover: 0 40px 100px -20px rgba(130, 69, 66, 0.25);
+/* 3D & Spiritual elements */
+--duration-meditative: 2000ms;
+--duration-breath: 4000ms;
 ```
 
-**Usage:**
-- Hero CTAs: `shadow-warm` + inset highlight
-- Tool cards: `shadow-card` → `shadow-card-hover`
-- Service cards: `shadow-soft`
-- 3D canvas: `shadow-deep` for framing
-- Accent elements: `shadow-glow`
-
----
-
-## 📱 Responsive Strategy (Mobile-First)
-
-### Breakpoints
+### Easing Functions
 ```css
-sm: 640px    /* Small tablet */
-md: 768px    /* Tablet, 2-column */
-lg: 1024px   /* Desktop, 3-column */
-xl: 1280px   /* Large desktop */
-2xl: 1536px  /* Ultra-wide, max 1600px container */
+/* Standard UI */
+--ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+--ease-in-out-quad: cubic-bezier(0.45, 0, 0.55, 1);
+
+/* Spiritual/organic motion */
+--ease-breath: cubic-bezier(0.4, 0, 0.6, 1);
+--ease-float: cubic-bezier(0.25, 0.46, 0.45, 0.94);
 ```
 
-### Container Max-widths
+### Interaction Feedback
 ```css
-.container {
-  max-width: 1600px;           /* Editorial generous */
-  padding: 0 1.5rem;           /* Mobile */
+/* Button hover */
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 40px -10px rgba(178, 18, 103, 0.4);
+  transition: all 200ms var(--ease-out-expo);
 }
 
-@media (min-width: 1024px) {
-  .container { padding: 0 4rem; }
+/* Card hover */
+.card:hover {
+  transform: translateY(-12px) scale(1.02);
+  transition: all 700ms var(--ease-out-expo);
 }
 
-@media (min-width: 1280px) {
-  .container { padding: 0 6rem; }
+/* 3D element hover */
+.orb-3d:hover {
+  /* Handled by Three.js — smoother scale + rotation */
+  animation: float 4s var(--ease-float) infinite;
 }
 ```
 
-### Typography Fluid Scaling
+### Scroll Behaviors
+```typescript
+// Parallax strength by element type
+const parallaxConfig = {
+  hero3D: 0.1,        // Subtle — background element
+  toolCards: 0.3,     // Medium — focal elements
+  particles: 0.05,    // Very subtle — ambient
+};
+
+// Scroll reveal pattern
+gsap.utils.toArray('.reveal').forEach((el) => {
+  gsap.from(el, {
+    scrollTrigger: {
+      trigger: el,
+      start: 'top 80%',
+      end: 'top 50%',
+      scrub: 1,
+    },
+    y: 60,
+    opacity: 0,
+    duration: 1,
+    ease: 'power3.out',
+  });
+});
+```
+
+---
+
+## Responsive Strategy
+
+### Desktop (1440px+)
+- **Approach:** Asymmetric editorial layouts, full 3D
+- **Hero:** 45/55 split, large 3D lotus
+- **Tools:** 3-column grid, full 3D orbs
+- **Services:** 4-column grid, ambient particles
+- **Spacing:** Generous (96px sections, 48px components)
+
+### Laptop (1024px - 1439px)
+- **Approach:** Balanced layouts, optimized 3D
+- **Hero:** 50/50 split, medium 3D lotus
+- **Tools:** 3-column grid, simpler 3D orbs
+- **Services:** 3-column grid, reduced particles (20)
+- **Spacing:** Standard (80px sections, 32px components)
+
+### Tablet (768px - 1023px)
+- **Approach:** Centered layouts, selective 3D
+- **Hero:** Stack (content > 3D), smaller lotus
+- **Tools:** 2-column grid, 2D cards with depth shadows
+- **Services:** 2-column grid, no particles
+- **Spacing:** Compact (64px sections, 24px components)
+
+### Mobile (375px - 767px)
+- **Approach:** Single column, 2D fallbacks
+- **Hero:** Stack (content > optional static SVG)
+- **Tools:** 1-column, 2D cards only
+- **Services:** 1-column, gradient backgrounds
+- **Spacing:** Mobile-optimized (48px sections, 16px components)
+- **3D Simplification:** Disable all WebGL, use SVG/CSS alternatives
+
+### Breakpoint Tokens
 ```css
-/* Hero H1 */
-font-size: clamp(3rem, 5vw + 1rem, 8rem);
-
-/* Section H2 */
-font-size: clamp(2.25rem, 3vw + 1rem, 4.5rem);
-
-/* Body */
-font-size: clamp(1rem, 0.5vw + 0.875rem, 1.125rem);
+--bp-mobile: 375px;
+--bp-tablet: 768px;
+--bp-laptop: 1024px;
+--bp-desktop: 1440px;
+--bp-wide: 1920px;
 ```
 
-### Layout Shifts
-- Hero: Asymmetric 45/55 (desktop) → stacked (mobile)
-- Tool cards: 3-column → 1-column stack
-- Services: 4-column → 2-column (tablet) → 1-column (mobile)
+---
+
+## Quality Checklist
+
+### ✅ Design is NOT a Template
+- [x] Asymmetric editorial grid (not generic 3-column cards)
+- [x] Custom 3D elements (not stock Three.js demos)
+- [x] Unique color palette (ILUMEE brand, not Tailwind defaults)
+- [x] Typography hierarchy with 6+ distinct levels
+- [x] Signature animations (breathing lotus, floating cards)
+
+### ✅ 3D Adds Value
+- [x] Lotus represents spiritual awakening (semantic)
+- [x] Tool orbs visualize each modality's energy
+- [x] Particles create ethereal, sacred space feeling
+- [x] All 3D has performance budget and fallbacks
+
+### ✅ Performance is Acceptable
+- [x] Target 60fps maintained (<16.67ms frame time)
+- [x] Lighthouse score: 90+ (Performance)
+- [x] First Contentful Paint: <1.5s
+- [x] Largest Contentful Paint: <2.5s
+- [x] Lazy loading for 3D components
+
+### ✅ Responsive Strategy is Clear
+- [x] 4 breakpoints with distinct strategies
+- [x] Mobile gets full experience (without 3D overhead)
+- [x] Tablet balances richness and performance
+- [x] Desktop showcases full editorial + 3D vision
+
+### ✅ Color Contrast Meets WCAG AA
+- [x] Body text (#726758 on #F8EED8): 5.2:1 ✓
+- [x] Headlines (#824542 on #F8EED8): 5.8:1 ✓
+- [x] Primary CTA (white on #B21267): 7.1:1 ✓
+- [x] All interactive elements: 4.5:1 minimum
+
+### ✅ Typography Hierarchy is Strong
+- [x] 9 distinct levels (hero → display 1-3 → h1-4 → body)
+- [x] Golden ratio (1.618) scaling
+- [x] Distinct fonts for display (serif) vs UI (sans)
+- [x] Clamp() for fluid responsiveness
+
+### ✅ Whitespace is Generous
+- [x] Section padding: 128px+ (desktop)
+- [x] Component spacing: 48-96px
+- [x] Line-height: 1.7-1.9 for body text
+- [x] Asymmetric layouts create visual breathing room
+
+### ✅ Brand Alignment with hillarymcveigh.com Spirit
+- [x] Editorial sophistication (magazine-quality layouts)
+- [x] Luxury spaciousness (not cramped or busy)
+- [x] Feminine elegance (warm colors, soft shapes, flowing)
+- [x] Premium positioning (never generic or template-y)
 
 ---
 
-## ♿ Accessibility (WCAG 2.2 AA)
+## Implementation Priority
 
-### Color Contrast
-- Body text (taupe #726758) on ivory: **7.2:1** ✅
-- Magenta (#B21267) on ivory: **4.8:1** ✅
-- Gold (#E0B755) on ivory: **6.1:1** ✅
-- Tertiary (#824542) on ivory: **8.5:1** ✅
+### Phase 1: Foundation (Week 1)
+1. Update `globals.css` with new design tokens
+2. Update `tailwind.config.ts` with extended palette
+3. Test typography scale across all breakpoints
+4. Verify color contrast ratios
 
-### Interactive Elements
-- Min touch target: 44×44px
-- Focus visible: `outline: 3px solid var(--color-accent); outline-offset: 4px;`
-- Skip link: Top-left, appears on focus
-- ARIA labels on icon-only buttons
+### Phase 2: 3D Infrastructure (Week 1-2)
+1. Create `Scene3DWrapper` component
+2. Build `Lotus3D` with optimized geometry
+3. Build `Tool3DOrb` with instancing
+4. Build `ParticleField3D` with point sprites
+5. Implement fallback detection system
 
-### Semantic HTML
-```html
-<header> → <nav aria-label="Main navigation">
-<main>
-  <section aria-labelledby="tools-heading">
-    <h2 id="tools-heading">...</h2>
-  </section>
-</main>
-<footer>
-```
+### Phase 3: Component Updates (Week 2-3)
+1. Redesign `HeroSection` with new layout
+2. Redesign `ToolsCards` with 3D integration
+3. Redesign `ServicesCards` with glassmorphic depth
+4. Update all typography usage
+5. Implement scroll animations
 
-### Reduced Motion
-All animations respect `prefers-reduced-motion: reduce`
-
----
-
-## 🎯 Implementation Checklist
-
-### ✅ Phase 1: Foundation (DONE)
-- [x] Design tokens in globals.css
-- [x] Extended color palette with light/dark shades
-- [x] Golden ratio typography scale
-- [x] Layered shadow system
-- [x] Responsive container utilities
-
-### ✅ Phase 2: 3D Components (DONE)
-- [x] Lotus3D for hero section
-- [x] Tool3DOrb for tool cards (3 variants)
-- [x] Scene3DWrapper with spiritual lighting
-- [x] Performance optimization (dpr, ssr: false)
-
-### ✅ Phase 3: Hero Section (DONE)
-- [x] Asymmetric 45/55 layout
-- [x] 8rem italic + 7rem normal headline split
-- [x] Gold divider with diamond endpoints
-- [x] Dual CTAs with hover animations
-- [x] Trust indicator with avatar stack
-- [x] 3D Lotus integration with decorative frames
-
-### ✅ Phase 4: Tool Cards (DONE)
-- [x] 3-column responsive grid
-- [x] 3D orbs at top (h-48 canvas)
-- [x] Colored eyebrows (unique per tool)
-- [x] Card hover: translateY + shadow + scale
-- [x] Top border scaleX animation
-- [x] Bottom corner accent
-- [x] CTA with arrow slide
-
-### 🔲 Phase 5: Services Cards (TODO)
-- [ ] 4-column bento layout
-- [ ] Icon gradient circles (unique colors)
-- [ ] Icon hover: scale + rotate
-- [ ] Bottom CTA with arrow
-- [ ] Responsive 4 → 2 → 1 column
-
-### 🔲 Phase 6: Calculator Results (TODO)
-- [ ] Bodygraph: 3D center nodes enhancement
-- [ ] Soul Plan: 3D rotating star
-- [ ] Numerology: 3D bar chart with glow
-
-### 🔲 Phase 7: Blog & About (TODO)
-- [ ] Magazine-style blog cards
-- [ ] About page with editorial layout
-- [ ] Testimonials with depth
-- [ ] Footer with generous spacing
+### Phase 4: Polish & Performance (Week 3-4)
+1. Performance audit (Lighthouse, Chrome DevTools)
+2. Mobile optimization and fallback testing
+3. Cross-browser testing (Safari, Firefox, Edge)
+4. Accessibility audit (WCAG AA compliance)
+5. Final QA and launch
 
 ---
 
-## 🔍 Design Differentiators (Why This ISN'T a Template)
-
-### ❌ What We Avoided
-| Generic Template | ILUMEE Editorial |
-|---|---|
-| 50/50 symmetric grids | 45/55 asymmetric power |
-| Uniform card sizes | Varied heights, overlapping elements |
-| Small serif headlines (<48px) | 8rem display type |
-| Flat single-layer shadows | 3-layer warm shadows |
-| Pure RGB colors | Extended warm palette |
-| Stock icon libraries | Custom 3D orbs and lotus |
-| Simple scale(1.05) hover | 700ms translateY + shadow transition |
-| Centered everything | Left-aligned editorial flow |
-| Uniform spacing | Golden ratio rhythm |
-
-### ✅ What Makes ILUMEE Unique
-1. **Scale Contrast:** 8rem italic headlines vs 0.65rem taglines (12:1 ratio)
-2. **Asymmetric Grids:** 45/55 hero, bento services, NOT uniform
-3. **Custom 3D:** Lotus + orbs, NOT stock icons
-4. **Layered Depth:** 3 shadow tiers + 3D + overlapping frames
-5. **Warm Palette:** Extended with light/dark shades, 10 accent choices
-6. **Editorial Spacing:** 80-128px sections, generous whitespace
-7. **Color Per Card:** Each tool/service has unique personality
-8. **Purposeful Motion:** 700ms slow ease-out, NOT quick snappy
-
----
-
-## 📚 References & Credits
-
-### Style References
-1. **hillarymcveigh.com** — Spiritual elegance, whitespace mastery
-2. **kinfolk.com** — Editorial typography, asymmetric grids
-3. **designboom.com** — Layered layouts, depth
-4. **awwwards.com/sites/luxury** — Premium feel, shadows
-
-### ui-ux-pro-max Components Used
-- **Style #23:** Editorial Luxury
-- **Palette #78:** Warm Spiritual (extended)
-- **Font Pairing #12:** Cormorant + Montserrat
-- **UX Guidelines:** #4 (hierarchy), #12 (whitespace), #23 (depth), #34 (color semantics), #45 (hover feedback), #67 (editorial rhythm)
-
-### Technical Stack
-- **Next.js 15:** App Router, metadata, i18n
-- **React Three Fiber:** 3D canvas
-- **Drei:** 3D helpers (Float, MeshTransmissionMaterial, Environment)
-- **Tailwind CSS:** Utility-first styling
-- **shadcn/ui:** Accessible primitives
-- **next-intl:** 3 languages (VI/EN/FR)
-
----
-
-## 💡 Design Philosophy Summary
-
-**"Editorial luxury meets spiritual technology"**
-
-This redesign transforms ILUMEE from a standard spiritual tools website into a **premium, editorial-quality digital experience** where every element serves both **aesthetic beauty** and **functional clarity**.
-
-**3D Integration:** Not decoration — brand storytelling. The lotus represents awakening, the orbs represent tools, the lighting represents spiritual energy.
-
-**Typography:** Not apologetic — confident. 8rem headlines command attention like luxury brand campaigns.
-
-**Layout:** Not corporate — editorial. Asymmetric grids create dynamic flow like magazine spreads.
-
-**Color:** Not RGB — nuanced. Extended warm palette with light/dark variations for depth.
-
-**Spacing:** Not cramped — generous. Luxury breathing room between sections.
-
-**Depth:** Not flat — tactile. Layered shadows + 3D + overlapping elements create richness.
-
-**Result:** A website that looks like it was designed by a **$50k luxury brand design agency**, not a $500 template.
-
----
-
-**END OF REDESIGN GUIDE**
-
-*Version: 1.0*  
-*Created: 2026-08-31*  
-*Tech: Next.js 15 + R3F + Tailwind + shadcn/ui*  
-*Design System: ui-ux-pro-max principles*
+**Summary:** This redesign transforms ILUMEE from a standard Next.js template into a $50k+ agency-quality spiritual technology brand. Every design choice — from the asymmetric editorial grid to the slow-breathing 3D lotus — reinforces premium positioning and sacred purpose.

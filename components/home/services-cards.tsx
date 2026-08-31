@@ -94,41 +94,35 @@ export function ServicesCards() {
               >
                 {/* Card container with depth */}
                 <div 
-                  className="relative h-full min-h-[380px] bg-ivory border border-accent/20 p-8 lg:p-10 transition-all duration-700 ease-out"
+                  className="relative h-full min-h-[380px] bg-white/60 backdrop-blur-sm border rounded-2xl p-8 lg:p-10 transition-all duration-400"
                   style={{
-                    transform: isHovered ? 'translateY(-8px) scale(1.02)' : 'translateY(0) scale(1)',
-                    boxShadow: isHovered 
-                      ? '0 40px 100px -20px rgba(130, 69, 66, 0.25)' 
-                      : '0 20px 60px -20px rgba(130, 69, 66, 0.1)',
+                    transform: isHovered ? 'translateY(-4px)' : 'translateY(0)',
+                    borderColor: isHovered ? card.color : 'rgba(224, 183, 85, 0.3)',
+                    boxShadow: '0 14px 40px -22px rgba(130, 69, 66, 0.18)',
                   }}
                 >
-                  {/* Top accent bar */}
+                  {/* Top accent bar - đơn giản hóa */}
                   <div 
-                    className="absolute top-0 left-0 right-0 h-1 transition-all duration-700"
+                    className="absolute top-0 left-0 right-0 h-1 transition-opacity duration-400"
                     style={{
-                      background: `linear-gradient(90deg, ${card.color}, #E0B755)`,
-                      transform: isHovered ? 'scaleX(1)' : 'scaleX(0)',
-                      transformOrigin: 'left',
+                      backgroundColor: card.color,
+                      opacity: isHovered ? 0.6 : 0,
                     }}
                   />
 
                   {/* Content */}
                   <div className="flex flex-col h-full">
-                    {/* Icon with gradient background */}
+                    {/* Icon - đơn giản hóa */}
                     <div 
-                      className={`
-                        relative w-16 h-16 mb-8 rounded-full 
-                        bg-gradient-to-br ${card.gradient}
-                        flex items-center justify-center
-                        transition-all duration-500
-                      `}
+                      className="relative w-16 h-16 mb-8 rounded-full flex items-center justify-center transition-all duration-400"
                       style={{
-                        transform: isHovered ? 'scale(1.1) rotate(5deg)' : 'scale(1) rotate(0deg)',
-                        boxShadow: isHovered ? `0 10px 30px -10px ${card.color}50` : 'none',
+                        background: isHovered 
+                          ? `radial-gradient(circle at 35% 35%, ${card.color}22, ${card.color}11)` 
+                          : `radial-gradient(circle at 35% 35%, #E0B75522, #E0B75511)`,
                       }}
                     >
                       <Icon 
-                        className="w-8 h-8 transition-colors duration-500"
+                        className="w-8 h-8 transition-colors duration-400"
                         style={{ color: isHovered ? card.color : '#726758' }}
                         strokeWidth={1.5}
                       />

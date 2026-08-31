@@ -3,21 +3,9 @@
 import Link from 'next/link';
 import { useTranslations, useLocale } from 'next-intl';
 import { ArrowRight, Compass, Sparkles, BookOpen } from 'lucide-react';
-import dynamic from 'next/dynamic';
-import { Suspense, useState } from 'react';
-
-const Scene3DWrapper = dynamic(
-  () => import('@/components/3d/scene-wrapper').then((mod) => mod.Scene3DWrapper),
-  { ssr: false }
-);
-const Tool3DOrb = dynamic(
-  () => import('@/components/3d/tool-orb-3d').then((mod) => mod.Tool3DOrb),
-  { ssr: false }
-);
+import { useState } from 'react';
 
 const ICONS = { Compass, Sparkles, BookOpen };
-
-type ToolIcon = 'soulplan' | 'humandesign' | 'numerology';
 
 export function ToolsCards() {
   const t = useTranslations('Home');
@@ -31,67 +19,61 @@ export function ToolsCards() {
       title: tCard('humanDesignTitle'), 
       desc: tCard('humanDesignDesc'), 
       icon: 'Compass', 
-      orb: 'humandesign' as ToolIcon,
       color: '#982170',
       href: `/${locale}/calculate/human-design`, 
-      cta: `/${locale}/tools/human-design` 
     },
     { 
       eyebrow: tCard('soulPlanEyebrow'), 
       title: tCard('soulPlanTitle'), 
       desc: tCard('soulPlanDesc'), 
       icon: 'Sparkles', 
-      orb: 'soulplan' as ToolIcon,
       color: '#B21267',
       href: `/${locale}/calculate/soul-plan`, 
-      cta: `/${locale}/tools/soul-plan` 
     },
     { 
       eyebrow: tCard('numerologyEyebrow'), 
       title: tCard('numerologyTitle'), 
       desc: tCard('numerologyDesc'), 
       icon: 'BookOpen', 
-      orb: 'numerology' as ToolIcon,
       color: '#824542',
       href: `/${locale}/calculate/numerology`, 
-      cta: `/${locale}/tools/numerology` 
     },
   ];
 
   return (
-    <section className="py-32 lg:py-40 bg-gradient-to-b from-transparent via-rose/5 to-peach/10 relative overflow-hidden">
-      {/* Decorative background elements */}
+    <section className="py-24 lg:py-32 bg-gradient-to-b from-transparent via-rose/5 to-transparent relative overflow-hidden">
+      {/* Subtle background glow */}
       <div className="absolute top-20 left-10 w-64 h-64 bg-accent/5 rounded-full blur-3xl" />
       <div className="absolute bottom-20 right-10 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
 
-      <div className="max-w-[1600px] mx-auto px-6 lg:px-16 xl:px-24 relative z-10">
-        {/* Section header - editorial style */}
-        <div className="max-w-3xl mb-20 lg:mb-32">
-          <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 bg-accent/10 border border-accent/20">
-            <Sparkles className="w-4 h-4 text-accent" />
-            <span className="text-[0.65rem] uppercase tracking-[0.35em] text-tertiary font-bold">
+      <div className="max-w-[1180px] mx-auto px-8 lg:px-16 relative z-10">
+        {/* Section header - như mockup */}
+        <div className="text-center mb-16 lg:mb-20">
+          <div className="inline-flex items-center gap-2 mb-4 px-4 py-2 border border-accent/20">
+            <span className="text-[0.65rem] uppercase tracking-[0.35em] text-accent font-bold">
               {t('toolsEyebrow')}
             </span>
           </div>
           
-          <h2 className="font-display text-5xl lg:text-7xl xl:text-8xl text-tertiary mb-8 leading-[0.9] tracking-tight font-light">
-            <span className="italic">{t('toolsTitle').split(' ')[0]}</span>
-            <br />
-            <span className="font-normal">{t('toolsTitle').split(' ').slice(1).join(' ')}</span>
+          <h2 className="font-display text-4xl lg:text-5xl xl:text-6xl text-tertiary mb-4 leading-tight font-light italic">
+            {t('toolsTitle')}
           </h2>
 
-          <div className="relative w-40 h-0.5 mb-8">
-            <div className="absolute inset-0 bg-gradient-to-r from-accent via-accent/60 to-transparent" />
-            <div className="absolute -top-1 left-0 w-2 h-2 bg-accent rotate-45" />
+          <div className="flex items-center justify-center gap-4 max-w-xs mx-auto my-6">
+            <div className="flex-1 h-px bg-gradient-to-r from-transparent via-accent to-transparent" />
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" className="w-5 h-5 text-accent">
+              <path d="M12 2c2 4 6 6 10 6-4 0-8 2-10 6-2-4-6-6-10-6 4 0 8-2 10-6z"/>
+            </svg>
+            <div className="flex-1 h-px bg-gradient-to-r from-accent via-transparent to-transparent" />
           </div>
 
-          <p className="text-xl lg:text-2xl text-taupe/90 leading-relaxed font-light max-w-2xl">
+          <p className="text-base lg:text-lg text-taupe leading-relaxed max-w-2xl mx-auto">
             {t('toolsSubtitle')}
           </p>
         </div>
 
-        {/* Cards grid - NOT uniform, layered depth */}
-        <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
+        {/* Cards grid - đơn giản, rõ ràng */}
+        <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
           {cards.map((card, index) => {
             const Icon = ICONS[card.icon as keyof typeof ICONS];
             const isHovered = hoveredIndex === index;
@@ -100,91 +82,65 @@ export function ToolsCards() {
               <Link 
                 key={card.href} 
                 href={card.href} 
-                className="group relative"
+                className="group"
                 onMouseEnter={() => setHoveredIndex(index)}
                 onMouseLeave={() => setHoveredIndex(null)}
               >
-                {/* Card container with depth */}
+                {/* Card - CSS transition đơn giản như mockup */}
                 <div 
-                  className="relative h-full bg-ivory border border-accent/20 p-8 lg:p-10 transition-all duration-700 ease-out"
+                  className="relative h-full bg-white/60 backdrop-blur-sm border border-accent/30 rounded-2xl p-8 transition-all duration-400"
                   style={{
-                    transform: isHovered ? 'translateY(-12px) scale(1.02)' : 'translateY(0) scale(1)',
+                    transform: isHovered ? 'translateY(-4px)' : 'translateY(0)',
+                    borderColor: isHovered ? card.color : 'rgba(224, 183, 85, 0.3)',
                     boxShadow: isHovered 
-                      ? '0 40px 100px -20px rgba(130, 69, 66, 0.25), inset 0 1px 0 rgba(224, 183, 85, 0.2)' 
-                      : '0 20px 60px -20px rgba(130, 69, 66, 0.12)',
+                      ? '0 14px 40px -22px rgba(130, 69, 66, 0.18)' 
+                      : '0 14px 40px -22px rgba(130, 69, 66, 0.18)',
                   }}
                 >
-                  {/* Top accent border */}
+                  {/* Icon - đơn giản, không 3D */}
                   <div 
-                    className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r transition-all duration-700"
+                    className="w-20 h-20 rounded-full flex items-center justify-center mb-6 transition-all duration-400"
                     style={{
-                      background: `linear-gradient(90deg, ${card.color}, #E0B755)`,
-                      transform: isHovered ? 'scaleX(1)' : 'scaleX(0)',
-                      transformOrigin: 'left',
+                      background: isHovered 
+                        ? `radial-gradient(circle at 35% 35%, ${card.color}22, ${card.color}11)` 
+                        : `radial-gradient(circle at 35% 35%, #E0B75522, #E0B75511)`,
                     }}
-                  />
-
-                  {/* 3D Orb - top of card */}
-                  <div className="relative w-full h-48 mb-8 -mt-4">
-                    <Suspense 
-                      fallback={
-                        <div className="w-full h-full flex items-center justify-center">
-                          <Icon className="w-16 h-16 text-primary animate-pulse" strokeWidth={1} />
-                        </div>
-                      }
-                    >
-                      <Scene3DWrapper cameraPosition={[0, 0, 4]}>
-                        <Tool3DOrb 
-                          icon={card.orb}
-                          color={card.color}
-                          scale={0.8}
-                          isHovered={isHovered}
-                        />
-                      </Scene3DWrapper>
-                    </Suspense>
+                  >
+                    <Icon 
+                      className="w-10 h-10 transition-colors duration-400" 
+                      strokeWidth={1.5}
+                      style={{ color: isHovered ? card.color : '#E0B755' }}
+                    />
                   </div>
 
                   {/* Content */}
-                  <div className="space-y-6">
-                    <div className="space-y-4">
-                      <div className="text-[0.65rem] uppercase tracking-[0.35em] font-bold" style={{ color: card.color }}>
-                        {card.eyebrow}
-                      </div>
-                      
-                      <h3 className="font-display text-3xl lg:text-4xl text-tertiary leading-tight font-normal">
-                        {card.title}
-                      </h3>
-                      
-                      <div className="w-16 h-px bg-gradient-to-r from-accent/50 to-transparent" />
-                      
-                      <p className="text-taupe/80 leading-relaxed text-base">
-                        {card.desc}
-                      </p>
+                  <div className="space-y-4">
+                    <div className="text-[0.65rem] uppercase tracking-[0.28em] font-bold" style={{ color: card.color }}>
+                      {card.eyebrow}
                     </div>
+                    
+                    <h3 className="font-display text-2xl lg:text-3xl text-tertiary leading-tight font-normal italic">
+                      {card.title}
+                    </h3>
+                    
+                    <p className="text-taupe/80 leading-relaxed text-sm">
+                      {card.desc}
+                    </p>
 
-                    {/* CTA */}
+                    {/* CTA arrow */}
                     <div 
-                      className="inline-flex items-center gap-3 text-sm font-bold uppercase tracking-[0.25em] transition-all duration-300 pt-4"
+                      className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] pt-2 transition-all duration-300"
                       style={{ color: card.color }}
                     >
                       <span>Khám phá</span>
                       <ArrowRight 
-                        className="w-5 h-5 transition-transform duration-300"
+                        className="w-4 h-4 transition-transform duration-300"
                         style={{
-                          transform: isHovered ? 'translateX(8px)' : 'translateX(0)',
+                          transform: isHovered ? 'translateX(4px)' : 'translateX(0)',
                         }}
                       />
                     </div>
                   </div>
-
-                  {/* Bottom corner accent */}
-                  <div 
-                    className="absolute bottom-0 right-0 w-24 h-24 border-r border-b transition-opacity duration-500"
-                    style={{
-                      borderColor: card.color,
-                      opacity: isHovered ? 0.3 : 0.1,
-                    }}
-                  />
                 </div>
               </Link>
             );
@@ -192,13 +148,13 @@ export function ToolsCards() {
         </div>
 
         {/* Bottom CTA */}
-        <div className="text-center mt-20 lg:mt-32">
+        <div className="text-center mt-16 lg:mt-20">
           <Link
             href={`/${locale}/tools`}
-            className="inline-flex items-center gap-4 px-12 py-5 border-2 border-tertiary/30 text-tertiary font-bold uppercase tracking-[0.25em] text-xs hover:bg-gradient-to-r hover:from-rose/30 hover:to-peach/30 hover:border-accent/50 transition-all duration-300"
+            className="inline-flex items-center gap-3 px-10 py-4 border border-tertiary/30 text-tertiary font-bold uppercase tracking-[0.2em] text-xs hover:border-accent/50 hover:bg-rose/20 transition-all duration-300"
           >
             Xem tất cả công cụ
-            <ArrowRight className="w-5 h-5" />
+            <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
       </div>
