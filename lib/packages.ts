@@ -9,10 +9,10 @@ export interface Package {
   nameKey: string; // i18n key suffix
   shortKey: string; // i18n short description key
   priceUSD: number;
-  unitKey: string; // 'one_time' | 'monthly' | 'combo'
+  unitKey: string; // 'unit.one_time' | 'unit.monthly' | 'unit.combo'
   calendly: string; // URL suffix
   recommended: boolean;
-  highlight?: string; // "Flagship" etc.
+  highlight?: string; // "flagship" etc.
 }
 
 export const PACKAGES: Package[] = [
@@ -24,6 +24,7 @@ export const PACKAGES: Package[] = [
     priceUSD: 199,
     unitKey: 'unit.one_time',
     calendly: 'classes-soulplan',
+    recommended: false,
   },
   {
     id: 'classes-livingdesign',
@@ -33,6 +34,7 @@ export const PACKAGES: Package[] = [
     priceUSD: 249,
     unitKey: 'unit.one_time',
     calendly: 'classes-livingdesign',
+    recommended: false,
   },
   {
     id: 'readings-soulplan',
@@ -42,6 +44,7 @@ export const PACKAGES: Package[] = [
     priceUSD: 149,
     unitKey: 'unit.one_time',
     calendly: 'reading-soulplan',
+    recommended: false,
   },
   {
     id: 'readings-bg5',
@@ -51,6 +54,7 @@ export const PACKAGES: Package[] = [
     priceUSD: 199,
     unitKey: 'unit.one_time',
     calendly: 'reading-bg5',
+    recommended: false,
   },
   {
     id: 'readings-numerology',
@@ -60,6 +64,7 @@ export const PACKAGES: Package[] = [
     priceUSD: 129,
     unitKey: 'unit.one_time',
     calendly: 'reading-numerology',
+    recommended: false,
   },
   {
     id: 'package-combo',
@@ -80,11 +85,11 @@ export const PACKAGES: Package[] = [
     priceUSD: 350,
     unitKey: 'unit.monthly',
     calendly: 'mentorship-1on1',
+    recommended: false,
   },
 ];
 
 export function packageCalendlyUrl(calendly: string): string {
   const base = process.env.NEXT_PUBLIC_CALENDLY_URL ?? 'https://calendly.com/ilumee/intro';
-  // Append event type as URL param if needed; in MVP we just return base.
   return `${base}?type=${encodeURIComponent(calendly)}`;
 }

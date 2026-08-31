@@ -2,6 +2,20 @@ import Link from 'next/link';
 import { getTranslations } from 'next-intl/server';
 import { Calculator, Compass, BookOpen, Sparkles } from 'lucide-react';
 import { Card } from '@/components/ui/primitives';
+import { JsonLd } from '@/components/seo/json-ld';
+import { breadcrumbLd } from '@/lib/seo/jsonld';
+import { pageMetadata } from '@/lib/seo/metadata';
+import type { AppLocale } from '@/i18n/routing';
+
+export const generateMetadata = pageMetadata({
+  path: 'calculate',
+  title: { vi: 'Tính ngay', en: 'Calculate', fr: 'Calculer' },
+  description: {
+    vi: 'Tính BodyGraph Human Design, Soul Plan, Thần số học — miễn phí, kết quả ngay trong vài giây.',
+    en: 'Calculate your Human Design BodyGraph, Soul Plan, and Numerology chart — free, results in seconds.',
+    fr: 'Calculez votre BodyGraph Human Design, Soul Plan et Numérologie — gratuit, résultats en quelques secondes.',
+  },
+});
 
 export default async function CalculateHub({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -12,27 +26,30 @@ export default async function CalculateHub({ params }: { params: Promise<{ local
     { href: `/${locale}/calculate/numerology`, icon: BookOpen, title: 'Thần số học', desc: 'Life Path, Expression, Soul Urge, Personality qua hệ Pythagorean.' },
   ];
   return (
-    <div className="pt-16 pb-24 max-w-5xl mx-auto px-6">
-      <header className="text-center mb-16">
-        <div className="tagline mb-4">Công cụ tính</div>
-        <h1 className="font-display italic font-light text-5xl lg:text-7xl text-tertiary">Chọn công cụ</h1>
-        <div className="lotus-divider mx-auto mt-4" />
-        <p className="text-taupe mt-6 max-w-xl mx-auto">Ba bản đồ cùng vẽ nên một bức tranh — con người bạn theo những chiều khác nhau.</p>
-      </header>
-      <div className="grid md:grid-cols-3 gap-6">
-        {tools.map((tool) => (
-          <Link key={tool.href} href={tool.href} className="group">
-            <Card className="h-full hover:-translate-y-2 transition-all">
-              <div className="flex items-start justify-between mb-4">
-                <tool.icon className="w-8 h-8 text-primary" />
-                {tool.tag && <span className="text-xs uppercase tracking-widest text-primary font-semibold">{tool.tag}</span>}
-              </div>
-              <h3 className="font-display text-2xl text-tertiary mb-2">{tool.title}</h3>
-              <p className="text-sm text-taupe leading-relaxed">{tool.desc}</p>
-            </Card>
-          </Link>
-        ))}
+    <>
+      <JsonLd data={breadcrumbLd(locale as AppLocale, [{ name: 'Calculate', href: '/calculate' }])} />
+      <div className="pt-16 pb-24 max-w-5xl mx-auto px-6">
+        <header className="text-center mb-16">
+          <div className="tagline mb-4">Công cụ tính</div>
+          <h1 className="font-display italic font-light text-5xl lg:text-7xl text-tertiary">Chọn công cụ</h1>
+          <div className="lotus-divider mx-auto mt-4" />
+          <p className="text-taupe mt-6 max-w-xl mx-auto">Ba bản đồ cùng vẽ nên một bức tranh — con người bạn theo những chiều khác nhau.</p>
+        </header>
+        <div className="grid md:grid-cols-3 gap-6">
+          {tools.map((tool) => (
+            <Link key={tool.href} href={tool.href} className="group">
+              <Card className="h-full hover:-translate-y-2 transition-all">
+                <div className="flex items-start justify-between mb-4">
+                  <tool.icon className="w-8 h-8 text-primary" />
+                  {tool.tag && <span className="text-xs uppercase tracking-widest text-primary font-semibold">{tool.tag}</span>}
+                </div>
+                <h3 className="font-display text-2xl text-tertiary mb-2">{tool.title}</h3>
+                <p className="text-sm text-taupe leading-relaxed">{tool.desc}</p>
+              </Card>
+            </Link>
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 }

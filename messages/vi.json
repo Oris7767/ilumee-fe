@@ -70,23 +70,39 @@
     "disclaimer": "Kết quả chỉ mang tính giáo dục và giải trí. Không thay thế tư vấn y tế, tài chính hay tâm lý chuyên nghiệp."
   },
   "Packages": {
-    "classesSoulPlan.name": "Lớp học Soul Plan cơ bản",
-    "classesSoulPlan.short": "Khóa học nền tảng về Soul Plan: giải mã tên khai sinh qua Ngôi sao Sáng thế 6 cánh và cách ứng dụng vào cuộc sống hàng ngày.",
-    "classesLivingDesign.name": "Sống thiết kế của bạn (Living Your Design)",
-    "classesLivingDesign.short": "Khóa học chính thức của Human Design — học cách áp dụng Type, Strategy và Authority vào quyết định hàng ngày.",
-    "readingsSoulPlan.name": "Đọc bản đồ linh hồn Soul Plan",
-    "readingsSoulPlan.short": "Phiên đọc 1-1 về linh hồn: xem xét Ngôi sao Sáng thế cá nhân và giải thích chi tiết về các cặp số trong đời bạn.",
-    "readingsBG5.name": "12 chìa khoá thành công BG5",
-    "readingsBG5.short": "Phiên đọc BG5 — 12 kiểu thành công theo BodyGraph 5, gợi ý vai trò và cách đóng góp vào nhóm.",
-    "readingsNumerology.name": "Đánh thức tài năng theo Thần số học",
-    "readingsNumerology.short": "Phiên đọc 1-1: phân tích Đường đời, Số tên, Số định mệnh và 10 khía cạnh cuộc sống từ Thần số học Pythagorean.",
-    "packageCombo.name": "Combo 3 tháng · Báo cáo + Lớp học + Coaching",
-    "packageCombo.short": "Báo cáo chuyên sâu + lớp học nền tảng + 3 tháng coaching 1-1 (12 giờ) — flagship cho hành trình toàn diện.",
-    "mentorship1on1.name": "Mentorship Coaching 1-1",
-    "mentorship1on1.short": "Đồng hành dài hạn cùng chuyên gia — kết hợp nhiều công cụ, theo dõi tiến trình qua các tháng.",
-    "unit.one_time": "Một lần",
-    "unit.monthly": "Mỗi tháng",
-    "unit.combo": "Combo 3 tháng"
+    "classesSoulPlan": {
+      "name": "Lớp học Soul Plan cơ bản",
+      "short": "Khóa học nền tảng về Soul Plan: giải mã tên khai sinh qua Ngôi sao Sáng thế 6 cánh và cách ứng dụng vào cuộc sống hàng ngày."
+    },
+    "classesLivingDesign": {
+      "name": "Sống thiết kế của bạn (Living Your Design)",
+      "short": "Khóa học chính thức của Human Design — học cách áp dụng Type, Strategy và Authority vào quyết định hàng ngày."
+    },
+    "readingsSoulPlan": {
+      "name": "Đọc bản đồ linh hồn Soul Plan",
+      "short": "Phiên đọc 1-1 về linh hồn: xem xét Ngôi sao Sáng thế cá nhân và giải thích chi tiết về các cặp số trong đời bạn."
+    },
+    "readingsBG5": {
+      "name": "12 chìa khoá thành công BG5",
+      "short": "Phiên đọc BG5 — 12 kiểu thành công theo BodyGraph 5, gợi ý vai trò và cách đóng góp vào nhóm."
+    },
+    "readingsNumerology": {
+      "name": "Đánh thức tài năng theo Thần số học",
+      "short": "Phiên đọc 1-1: phân tích Đường đời, Số tên, Số định mệnh và 10 khía cạnh cuộc sống từ Thần số học Pythagorean."
+    },
+    "packageCombo": {
+      "name": "Combo 3 tháng · Báo cáo + Lớp học + Coaching",
+      "short": "Báo cáo chuyên sâu + lớp học nền tảng + 3 tháng coaching 1-1 (12 giờ) — flagship cho hành trình toàn diện."
+    },
+    "mentorship1on1": {
+      "name": "Mentorship Coaching 1-1",
+      "short": "Đồng hành dài hạn cùng chuyên gia — kết hợp nhiều công cụ, theo dõi tiến trình qua các tháng."
+    },
+    "unit": {
+      "one_time": "Một lần",
+      "monthly": "Mỗi tháng",
+      "combo": "Combo 3 tháng"
+    }
   },
   "Footer": {
     "disclaimer": "Các công cụ và bài viết trên ILUMEE chỉ mang tính giáo dục và giải trí, không thay thế tư vấn y tế, tài chính hay tâm lý chuyên nghiệp.",

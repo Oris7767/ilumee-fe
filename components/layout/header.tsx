@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState } from 'react';
 import { useParams, usePathname } from 'next/navigation';
 import { useTranslations } from 'next-intl';
@@ -43,22 +44,13 @@ export function Header({ locale }: HeaderProps) {
           {/* Logo */}
           <Link href={`/${locale}`} className="flex items-center gap-2 group">
             <div className="relative w-9 h-9 lg:w-11 lg:h-11">
-              <svg viewBox="0 0 48 48" className="w-full h-full">
-                {/* Lotus logo — placeholder, simple stylized 6-petal lotus + center circle */}
-                <circle cx="24" cy="24" r="6" fill="#b21267" />
-                {[0, 60, 120, 180, 240, 300].map((deg) => (
-                  <ellipse
-                    key={deg}
-                    cx="24"
-                    cy="14"
-                    rx="3.5"
-                    ry="9"
-                    fill="#e0b755"
-                    opacity="0.85"
-                    transform={`rotate(${deg} 24 24)`}
-                  />
-                ))}
-              </svg>
+              <Image
+                src="/logo.png"
+                alt="ILUMEE logo"
+                fill
+                className="object-contain"
+                priority
+              />
             </div>
             <span className="font-display text-xl lg:text-2xl tracking-wide text-tertiary group-hover:text-primary transition-colors">
               {tBrand('name')}

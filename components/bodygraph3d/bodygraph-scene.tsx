@@ -1,7 +1,9 @@
+/// <reference types="@react-three/fiber" />
+
 'use client';
 
 import { useRef, useState } from 'react';
-import { useFrame } from '@react-three/fiber';
+import { useFrame, type ThreeElements } from '@react-three/fiber';
 import { Text } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
@@ -10,6 +12,11 @@ import { CHANNELS } from '@/lib/channels';
 import { CENTERS, CENTER_BY_ID } from '@/lib/centers';
 import type { HDChart } from '@/lib/mock-hd';
 import { prefersReducedMotion } from '@/lib/features';
+
+// Force this module to be considered a user of r3f's intrinsic-element types
+// so the global JSX.IntrinsicElements augmentation from three-types.d.ts is
+// pulled into the type graph of this file.
+export type _BodygraphR3FTypes = ThreeElements;
 
 interface BodyGraph3DProps {
   chart: HDChart;
@@ -115,7 +122,7 @@ export function BodyGraph3D({ chart }: BodyGraph3DProps) {
 /* -------------------------------------------------------------------------- */
 
 function Stars() {
-  const positions = useRef<Float32Array>();
+  const positions = useRef<Float32Array>(new Float32Array(0));
   if (!positions.current) {
     const arr = new Float32Array(280 * 3);
     for (let i = 0; i < 280; i++) {
@@ -130,6 +137,7 @@ function Stars() {
       <bufferGeometry>
         <bufferAttribute
           attach="attributes-position"
+          args={[positions.current, 3]}
           count={280}
           array={positions.current}
           itemSize={3}

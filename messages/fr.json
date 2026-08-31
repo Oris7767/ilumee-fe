@@ -70,23 +70,39 @@
     "disclaimer": "Ce rapport est à but éducatif et ludique. Il ne remplace aucun avis médical, financier ou psychologique professionnel."
   },
   "Packages": {
-    "classesSoulPlan.name": "Fondations Soul Plan",
-    "classesSoulPlan.short": "Cours fondamental sur le Soul Plan — décoder votre nom à travers l'Étoile de la Création et l'appliquer au quotidien.",
-    "classesLivingDesign.name": "Living Your Design",
-    "classesLivingDesign.short": "Le cours officiel de Human Design — appliquer Type, Stratégie et Autorité aux décisions quotidiennes.",
-    "readingsSoulPlan.name": "Lecture Soul Plan",
-    "readingsSoulPlan.short": "Lecture 1-1 de l'âme — revue de votre Étoile de la Création et explication des paires de nombres.",
-    "readingsBG5.name": "12 codes de succès BG5",
-    "readingsBG5.short": "Lecture BG5 — 12 types de succès du BodyGraph 5, rôles et contribution à une équipe.",
-    "readingsNumerology.name": "Lecture Talents Numérologie",
-    "readingsNumerology.short": "Lecture 1-1 — Chemin de vie, Expression, Âme et dix facettes de la numérologie pythagoricienne.",
-    "packageCombo.name": "Combo 3 mois · Rapport + Cours + Coaching",
-    "packageCombo.short": "Rapport complet + cours fondamentaux + 3 mois de coaching 1-1 (12 heures) — phare d'un parcours global.",
-    "mentorship1on1.name": "Mentorat 1-1",
-    "mentorship1on1.short": "Accompagnement long terme combinant plusieurs outils, suivi mensuel des progrès.",
-    "unit.one_time": "Une fois",
-    "unit.monthly": "Mensuel",
-    "unit.combo": "Combo 3 mois"
+    "classesSoulPlan": {
+      "name": "Fondations Soul Plan",
+      "short": "Cours fondamental sur le Soul Plan — décoder votre nom à travers l'Étoile de la Création et l'appliquer au quotidien."
+    },
+    "classesLivingDesign": {
+      "name": "Living Your Design",
+      "short": "Le cours officiel de Human Design — appliquer Type, Stratégie et Autorité aux décisions quotidiennes."
+    },
+    "readingsSoulPlan": {
+      "name": "Lecture Soul Plan",
+      "short": "Lecture 1-1 de l'âme — revue de votre Étoile de la Création et explication des paires de nombres."
+    },
+    "readingsBG5": {
+      "name": "12 codes de succès BG5",
+      "short": "Lecture BG5 — 12 types de succès du BodyGraph 5, rôles et contribution à une équipe."
+    },
+    "readingsNumerology": {
+      "name": "Lecture Talents Numérologie",
+      "short": "Lecture 1-1 — Chemin de vie, Expression, Âme et dix facettes de la numérologie pythagoricienne."
+    },
+    "packageCombo": {
+      "name": "Combo 3 mois · Rapport + Cours + Coaching",
+      "short": "Rapport complet + cours fondamentaux + 3 mois de coaching 1-1 (12 heures) — phare d'un parcours global."
+    },
+    "mentorship1on1": {
+      "name": "Mentorat 1-1",
+      "short": "Accompagnement long terme combinant plusieurs outils, suivi mensuel des progrès."
+    },
+    "unit": {
+      "one_time": "Une fois",
+      "monthly": "Mensuel",
+      "combo": "Combo 3 mois"
+    }
   },
   "Footer": {
     "disclaimer": "Les outils et articles d'ILUMEE sont à vocation éducative et ludique. Ils ne remplacent aucun avis médical, financier ou psychologique professionnel.",

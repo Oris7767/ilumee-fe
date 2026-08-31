@@ -1,12 +1,14 @@
 import type { Metadata } from 'next';
-import { NextIntlClientProvider, hasLocale } from 'next-intl';
+import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { Cormorant_Garamond, Montserrat } from 'next/font/google';
 import { notFound } from 'next/navigation';
-import { routing } from '@/i18n/routing';
+import { routing, type AppLocale } from '@/i18n/routing';
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { LotusWatermark } from '@/components/home/lotus-watermark';
+import { JsonLd } from '@/components/seo/json-ld';
+import { organizationLd, websiteLd } from '@/lib/seo/jsonld';
 
 const display = Cormorant_Garamond({
   subsets: ['latin', 'latin-ext', 'vietnamese'],
@@ -33,12 +35,14 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const titles: Record<string, string> = {
+  if (!(routing.locales as readonly string[]).includes(locale)) return {};
+  const safeLocale = locale as AppLocale;
+  const titles: Record<AppLocale, string> = {
     vi: 'ILUMEE — Đánh thức sức mạnh thật của bạn',
     en: 'ILUMEE — Awaken Your True Power',
     fr: 'ILUMEE — Éveillez votre vrai pouvoir',
   };
-  const descriptions: Record<string, string> = {
+  const descriptions: Record<AppLocale, string> = {
     vi: 'Bộ 3 công cụ Soul Plan, Human Design và Thần số học. Giải mã cá tính, sống đúng với thiết kế vốn có của bạn.',
     en: 'Soul Plan, Human Design & Numerology. Decode your personality and live aligned with your true design.',
     fr: 'Soul Plan, Human Design & Numérologie. Décodez votre personnalité et vivez aligné avec votre design originel.',
@@ -46,17 +50,17 @@ export async function generateMetadata({
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://ilumee.netlify.app';
   return {
     metadataBase: new URL(baseUrl),
-    title: titles[locale] ?? titles.vi,
-    description: descriptions[locale] ?? descriptions.vi,
+    title: titles[safeLocale],
+    description: descriptions[safeLocale],
     openGraph: {
-      title: titles[locale] ?? titles.vi,
-      description: descriptions[locale] ?? descriptions.vi,
+      title: titles[safeLocale],
+      description: descriptions[safeLocale],
       siteName: 'ILUMEE',
-      locale,
+      locale: safeLocale,
       type: 'website',
     },
     alternates: {
-      canonical: `${baseUrl}/${locale}`,
+      canonical: `${baseUrl}/${safeLocale}`,
       languages: {
         vi: `${baseUrl}/vi`,
         en: `${baseUrl}/en`,
@@ -74,23 +78,28 @@ export default async function LocaleLayout({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-
-  if (!hasLocale(routing.locales, locale)) {
+  if (!(routing.locales as readonly string[]).includes(locale)) {
     notFound();
   }
+  const safeLocale = locale as AppLocale;
 
-  setRequestLocale(locale);
+  setRequestLocale(safeLocale);
   const messages = await getMessages();
 
   return (
-    <html lang={locale} className={`${display.variable} ${body.variable}`}>
+    <html lang={safeLocale} className={`${display.variable} ${body.variable}`}>
+      <head>
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.svg" sizes="180x180" />
+        <JsonLd data={[organizationLd(), websiteLd(routing.locales)]} />
+      </head>
       <body className="font-body antialiased">
-        <NextIntlClientProvider messages={messages} locale={locale}>
+        <NextIntlClientProvider messages={messages} locale={safeLocale}>
           <a href="#main" className="skip-link">Skip to content</a>
           <LotusWatermark />
-          <Header locale={locale} />
+          <Header locale={safeLocale} />
           <main id="main" className="relative z-10">{children}</main>
-          <Footer locale={locale} />
+          <Footer locale={safeLocale} />
         </NextIntlClientProvider>
       </body>
     </html>

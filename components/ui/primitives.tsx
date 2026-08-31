@@ -62,12 +62,23 @@ export function Input({ className, ...props }: React.InputHTMLAttributes<HTMLInp
   );
 }
 
-export function Label({ className, ...props }: React.LabelHTMLAttributes<HTMLLabelElement>) {
+interface LabelProps extends React.LabelHTMLAttributes<HTMLLabelElement> {
+  required?: boolean;
+}
+
+export function Label({ className, required, children, ...props }: LabelProps) {
   return (
     <label
       className={cn('block text-sm font-medium text-tertiary mb-2 tracking-wide', className)}
       {...props}
-    />
+    >
+      {children}
+      {required && (
+        <span aria-hidden="true" className="text-primary ml-1">
+          *
+        </span>
+      )}
+    </label>
   );
 }
 

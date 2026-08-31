@@ -70,23 +70,39 @@
     "disclaimer": "This report is for educational and entertainment purposes only. It does not replace professional medical, financial, or psychological advice."
   },
   "Packages": {
-    "classesSoulPlan.name": "Soul Plan Foundations",
-    "classesSoulPlan.short": "Foundational course on Soul Plan — decode your birth name through the Star of Creation and apply it to daily life.",
-    "classesLivingDesign.name": "Living Your Design",
-    "classesLivingDesign.short": "The official Human Design course — learn to apply Type, Strategy and Authority to daily decisions.",
-    "readingsSoulPlan.name": "Soul Plan Reading",
-    "readingsSoulPlan.short": "1-1 soul reading — review your personal Star of Creation and explain the number pairs in your life.",
-    "readingsBG5.name": "BG5 12 Success Codes",
-    "readingsBG5.short": "BG5 reading — 12 success types from BodyGraph 5, guidance on roles and contribution to a team.",
-    "readingsNumerology.name": "Numerology Talent Reading",
-    "readingsNumerology.short": "1-1 reading — Life Path, Expression, Soul Urge and ten life facets from Pythagorean Numerology.",
-    "packageCombo.name": "3-Month Combo · Report + Classes + Coaching",
-    "packageCombo.short": "In-depth report + foundational classes + 3-month 1-1 coaching (12 hours) — flagship for a comprehensive journey.",
-    "mentorship1on1.name": "1-1 Mentorship",
-    "mentorship1on1.short": "Long-term 1-1 coaching combining multiple tools, with monthly progress reviews.",
-    "unit.one_time": "One-time",
-    "unit.monthly": "Monthly",
-    "unit.combo": "3-month combo"
+    "classesSoulPlan": {
+      "name": "Soul Plan Foundations",
+      "short": "Foundational course on Soul Plan — decode your birth name through the Star of Creation and apply it to daily life."
+    },
+    "classesLivingDesign": {
+      "name": "Living Your Design",
+      "short": "The official Human Design course — learn to apply Type, Strategy and Authority to daily decisions."
+    },
+    "readingsSoulPlan": {
+      "name": "Soul Plan Reading",
+      "short": "1-1 soul reading — review your personal Star of Creation and explain the number pairs in your life."
+    },
+    "readingsBG5": {
+      "name": "BG5 12 Success Codes",
+      "short": "BG5 reading — 12 success types from BodyGraph 5, guidance on roles and contribution to a team."
+    },
+    "readingsNumerology": {
+      "name": "Numerology Talent Reading",
+      "short": "1-1 reading — Life Path, Expression, Soul Urge and ten life facets from Pythagorean Numerology."
+    },
+    "packageCombo": {
+      "name": "3-Month Combo · Report + Classes + Coaching",
+      "short": "In-depth report + foundational classes + 3-month 1-1 coaching (12 hours) — flagship for a comprehensive journey."
+    },
+    "mentorship1on1": {
+      "name": "1-1 Mentorship",
+      "short": "Long-term 1-1 coaching combining multiple tools, with monthly progress reviews."
+    },
+    "unit": {
+      "one_time": "One-time",
+      "monthly": "Monthly",
+      "combo": "3-month combo"
+    }
   },
   "Footer": {
     "disclaimer": "Tools and articles on ILUMEE are for educational and entertainment purposes only. They do not replace professional medical, financial, or psychological advice.",

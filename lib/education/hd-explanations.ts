@@ -7,7 +7,11 @@
 export type HDType = 'Generator' | 'Manifestor' | 'Manifesting Generator' | 'Projector' | 'Reflector';
 export type HDAuthority =
   | 'Emotional' | 'Sacral' | 'Splenic' | 'Ego' | 'Self-Projected'
-  | 'Mental' | 'Lunar';
+  | 'Mental' | 'Lunar'
+  // Compound hints (used as `authorityHint` to surface the most likely authority
+  // for a given Type before the chart is fully resolved).
+  | 'Splenic hoặc Emotional'
+  | 'Self-Projected hoặc Mental';
 export type HDProfile = string;
 
 export interface TypeEducation {
@@ -68,15 +72,15 @@ export interface AuthorityEducation {
 }
 
 export const AUTHORITY_EDUCATION: Record<HDAuthority, AuthorityEducation> = {
-  Emotional: {
+  'Emotional': {
     short: 'Sóng cảm xúc — chờ đợi cho sóng qua rồi quyết.',
     how: 'Bạn thuộc nhóm Solar Plexus defined — quyết định đúng khi bạn đợi hết sóng cảm xúc (có thể mất vài giờ, vài ngày). Không nên quyết trên đỉnh hay đáy sóng.',
   },
-  Sacral: {
+  'Sacral': {
     short: 'Phản hồi âm thanh — nghe tiếng "uh-huh" hoặc "uhn-uhn".',
     how: 'Bạn có Sacral defined. Cách ra quyết định đúng là chờ phản hồi tức thì trong cơ thể — tiếng "uh-huh" (có) / "uhn-uhn" (không) — thay vì dùng trí tuệ.',
   },
-  Splenic: {
+  'Splenic': {
     short: 'Trực giác thân thể — tín hiệu nhỏ, ngay lập tức.',
     how: 'Bạn có Spleen defined. Hãy tin vào tín hiệu nhỏ từ cơ thể ngay lập tức (sợ hãi, thoải mái, "đây không phải"). Quyết định nên đưa ra trong 1-2 giây — quá lâu = tiếng nói của tâm trí.',
   },
@@ -88,12 +92,21 @@ export const AUTHORITY_EDUCATION: Record<HDAuthority, AuthorityEducation> = {
     short: 'Nói ra để nghe — Projector lắng nghe chính mình qua việc nói.',
     how: 'Khi nói chuyện (đặc biệt với người mình tin), bạn sẽ tự nghe được câu trả lời. Môi trường 1-1 tốt nhất.',
   },
-  Mental: {
+  'Mental': {
     short: 'Hỏi người khác — qua trao đổi để rõ ràng hơn.',
     how: 'Brain/Mental authority: bạn có khả năng suy nghĩ sâu qua trao đổi. Hãy đặt câu hỏi cho người đáng tin trong 24h đầu.',
   },
-  Lunar: {
+  'Lunar': {
     short: 'Chờ Mặt Trăng — phản ánh môi trường trong 28 ngày.',
     how: 'Đặc trưng Reflector: chờ qua một chu kỳ Mặt Trăng (~28 ngày) để quyết định lớn. Môi trường sống ảnh hưởng trực tiếp đến sức khỏe và bình an của bạn.',
+  },
+  // Compound authority hints surfaced before chart is fully resolved.
+  'Splenic hoặc Emotional': {
+    short: 'Splenic hoặc Emotional — Manifestor thường thuộc 1 trong 2.',
+    how: 'Manifestor thường có Authority là Splenic (trực giác thân thể) hoặc Emotional (sóng cảm xúc). Xem chi tiết trong chart đầy đủ.',
+  },
+  'Self-Projected hoặc Mental': {
+    short: 'Self-Projected hoặc Mental — Projector thường thuộc 1 trong 2.',
+    how: 'Projector không có Sacral/Ego, Authority thường là Self-Projected (nói ra để nghe) hoặc Mental (hỏi người khác).',
   },
 };
